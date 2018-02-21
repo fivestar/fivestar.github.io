@@ -1,0 +1,30 @@
+// kana
+
+.kana-source,
+.kana-dest {
+  width: 600px;
+  font-size: 80%;
+}
+
+.kana-form-source,
+.kana-form-dest {
+  border: none;
+}
+
+.kana-form-source {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  label {
+    display: block;
+    font-size: 90%;
+  }
+}
+
+
+@media (max-width: 543px) {
+  .kana-source, .kana-dest {
+    width: 300px;
+  }
+}

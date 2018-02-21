@@ -1,0 +1,49 @@
+---
+layout: default
+title: KANA | fvstr.jp
+description: 日本語の全角/半角、ひらがな/カタカナ変換を簡単に行えるツールです
+---
+
+<article class="content kana-content">
+  <header class="content__header">
+    <h1 class="content__headline">KANA</h1>
+    <p class="content__subheadline">converts from "kana" to another</p>
+  </header>
+
+  <fieldset class="kana-form-source">
+    <div class="form-group">
+      <label for="kana-source">SOURCE</label>
+      <textarea id="kana-source" class="kana-source" placeholder="みなとくあかさか9-7-1 ミッドタウン・タワー" rows="3"></textarea>
+    </div>
+  </fieldset><!-- /.kana-form-source -->
+  <fieldset class="kana-form-dest">
+    <div class="form-group">
+      <label for="kana-dest-general">to 半角英数/全角カナ</label>
+      <textarea id="kana-dest-general" class="kana-dest" data-convert="KVas" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="kana-dest-zenkaku">to ALL全角</label>
+      <textarea id="kana-dest-zenkaku" class="kana-dest" data-convert="KVAS" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="kana-dest-hankaku">to ALL半角</label>
+      <textarea id="kana-dest-hankaku" class="kana-dest" data-convert="khas" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="kana-dest-katakana">かな to カナ</label>
+      <textarea id="kana-dest-katakana" class="kana-dest" data-convert="CKVAS" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="kana-dest-hiragana">カナ to かな</label>
+      <textarea id="kana-dest-hiragana" class="kana-dest" data-convert="cHVAS" rows="3"></textarea>
+    </div>
+  </fieldset><!-- /.kana-form-dest -->
+</article>
+
+<script crossorigin="anonymous" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/vendor/p2js.mb_convert_kana.js"></script>
+<script src="/assets/js/kana.js"></script>

@@ -1,0 +1,29 @@
+.media {
+  display: flex;
+  margin-bottom: 32px;
+
+  &__thumbnail {
+    width: 40%;
+    max-width: 160px;
+
+    img {
+      max-width: 100%;
+      box-shadow: 0 2px 4px rgba($gray, 0.4),
+                  0 2px 18px rgba($gray, 0.2);
+    }
+  }
+
+  &__content {
+    padding-left: 16px;
+    flex-grow: 1;
+  }
+
+  .infolist {
+  }
+  .infolist__term {
+    margin-bottom: 8px;
+  }
+  .infolist__detail {
+    margin-left: 0;
+  }
+}

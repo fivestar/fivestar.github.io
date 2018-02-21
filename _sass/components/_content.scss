@@ -1,0 +1,39 @@
+.content {
+  margin-bottom: 48px;
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+
+    @include media(mobile) {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__headline {
+    margin-bottom: 8px;
+    font-size: $font-size-x-large;
+    letter-spacing: 0.03em;
+
+    &:first-letter {
+      color: $primary;
+    }
+  }
+
+  &__subheadline {
+    padding-left: 24px;
+    font-size: $font-size-large;
+
+    @include media(mobile) {
+      margin-top: -16px;
+      margin-bottom: 24px;
+      padding-left: 0;
+      font-size: $font-size-regular;
+    }
+
+    &::before {
+      content: '- ';
+    }
+  }
+}

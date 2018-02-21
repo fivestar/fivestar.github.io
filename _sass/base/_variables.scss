@@ -1,0 +1,37 @@
+$white : #fff;
+$gray  : #544;
+$gray-light  : lighten($gray, 15%);
+$gray-lighter: rgba($gray, 0.15);
+
+$primary: #ff7736;
+
+$link-color      : $primary;
+$link-hover-color: lighten($primary, 15%);
+
+$font-size-x-small  : 14px;
+$font-size-small  : 16px;
+$font-size-regular: 18px;
+$font-size-large  : 30px;
+$font-size-x-large: 38px;
+
+$font-weight-thin       : 100;
+$font-weight-extra-light: 200;
+$font-weight-light      : 300;
+$font-weight-normal     : 400;
+$font-weight-medium     : 500;
+$font-weight-semi-bold  : 600;
+$font-weight-bold       : 700;
+$font-weight-extra-bold : 800;
+$font-weight-ultra-bold : 900;
+
+$logo-height: 40px;
+
+$desktop-spacing-top : 72px;
+$desktop-spacing-left: 240px;
+
+$zindex-logo: 480;
+
+$media-breakpoints: (
+  mobile : 'screen and (max-width: 480px)',
+  desktop: 'screen and (min-width: 481px)',
+);

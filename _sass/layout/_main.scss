@@ -1,0 +1,8 @@
+.main {
+  @include media(mobile) {
+    margin-top: 8px;
+  }
+  @include media(desktop) {
+    margin-top: $desktop-spacing-top;
+  }
+}
