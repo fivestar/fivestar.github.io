@@ -1,8 +1,8 @@
 body {
-  font-family: "Ubuntu","Hiragino Sans",Arial,sans-serif;
-  font-size: 125%;
+  font-family: $font-family-sans;
+  font-size: $font-size-regular;
   font-weight: $font-weight-normal;
-  line-height: 1.7;
+  line-height: $line-height;
   color: $gray;
 }
 

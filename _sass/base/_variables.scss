@@ -8,11 +8,16 @@ $primary: #ff7736;
 $link-color      : $primary;
 $link-hover-color: lighten($primary, 15%);
 
-$font-size-x-small  : 14px;
-$font-size-small  : 16px;
-$font-size-regular: 18px;
-$font-size-large  : 30px;
-$font-size-x-large: 38px;
+$font-family-sans: "Ubuntu","Hiragino Sans",Arial,sans-serif;
+$font-family-mono: "PT Mono","Ubuntu Mono",monospace;
+
+$font-size-x-small : 14px;
+$font-size-small   : 16px;
+$font-size-regular : 18px;
+$font-size-large   : 30px;
+$font-size-x-large : 38px;
+
+$line-height: 1.7;
 
 $font-weight-thin       : 100;
 $font-weight-extra-light: 200;

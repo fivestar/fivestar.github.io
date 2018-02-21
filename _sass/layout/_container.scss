@@ -1,11 +1,13 @@
 .container {
+  width: 100%;
+
   @include media(mobile) {
-    width: 100%;
     padding-left: 16px;
     padding-right: 16px;
   }
 
   @include media(desktop) {
-    margin-left: $desktop-spacing-left;
+    padding-left: $desktop-spacing-left;
+    padding-right: $desktop-spacing-left;
   }
 }
