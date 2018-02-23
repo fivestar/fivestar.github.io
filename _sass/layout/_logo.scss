@@ -2,8 +2,7 @@
   &__content {
     display: inline-block;
     width: $desktop-spacing-left;
-    margin: 0;
-    padding: 16px 16px;
+    padding: $logo-margin;
     letter-spacing: 0.03em;
     font-size: $logo-height;
     line-height: $logo-height;

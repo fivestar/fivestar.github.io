@@ -11,11 +11,10 @@ $link-hover-color: lighten($primary, 15%);
 $font-family-sans: "Ubuntu", sans-serif;
 $font-family-mono: "PT Mono", "Ubuntu Mono", monospace;
 
-$font-size-x-small : 14px;
 $font-size-small   : 16px;
-$font-size-regular : 18px;
-$font-size-large   : 30px;
-$font-size-x-large : 38px;
+$font-size-regular : 20px;
+$font-size-large   : 24px;
+$font-size-x-large : 32px;
 
 $line-height: 1.7;
 
@@ -30,9 +29,10 @@ $font-weight-extra-bold : 800;
 $font-weight-ultra-bold : 900;
 
 $logo-height: 40px;
+$logo-margin: 16px;
 
 $desktop-spacing-top : 72px;
-$desktop-spacing-left: 240px;
+$desktop-spacing-left: 256px;
 
 $zindex-logo: 480;
 

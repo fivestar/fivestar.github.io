@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  margin-bottom: 16px;
+  padding-top: $logo-margin;
+
+  @include media(mobile) {
+    flex-wrap: wrap;
+  }
+
+  &--invisible {
+    visibility: hidden;
+    margin-bottom: 0;
+
+    @include media(mobile) {
+      height: 0;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__headline {
+    position: relative;
+    font-size: $logo-height;
+    line-height: $logo-height;
+    letter-spacing: 0.03em;
+
+    @include highlight-first();
+
+    @include media(desktop) {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: -36px;
+        color: $gray-lighter;
+        content: '> ';
+      }
+    }
+
+  }
+
+
+  &__subheadline {
+    margin-bottom: 0;
+    padding-left: 16px;
+    font-size: $font-size-large;
+
+    @include media(mobile) {
+      font-size: $font-size-regular;
+    }
+
+    &::before {
+      content: '- ';
+    }
+  }
+}
