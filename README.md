@@ -3,6 +3,7 @@
 ## Development
 
 ```console
-gem install github-pages
-jekyll s
+bundle install
+
+bundle exec jekyll serve
 ```
