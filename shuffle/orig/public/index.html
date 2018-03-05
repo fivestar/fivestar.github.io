@@ -1,0 +1,58 @@
+<!doctype html></!doctype>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ancar Shuffle</title>
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/app.css">
+  <script src="./assets/js/app.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <header class="layout__header">
+      <h1>Ancar Shuffle</h1>
+    </header>
+
+    <div class="layout__container">
+      <main class="main-container">
+        <form id="formShuffle" class="form-shuffle">
+          <div class="form-group">
+            <label for="inputGrouping">Group</label>
+            <select id="inputGrouping" class="form-shuffle__input-grouping">
+              <option value="P2">2人組</option>
+              <option value="P3">3人組</option>
+              <option value="P4">4人組</option>
+              <option value="P5">5人組</option>
+              <option value="G2">2グループ</option>
+              <option value="G3">3グループ</option>
+              <option value="G4">4グループ</option>
+              <option value="G5">5グループ</option>
+              <option value="P1">バラバラ</option>
+            </select>
+          </div>
+          <table class="shuffletable">
+            <tbody>
+              <tr>
+                <td class="shuffletable__col shuffletable__col--left">
+                  <textarea id="inputMembers" class="inputarea form-shuffle__input-members"></textarea>
+                </td>
+                <td class="shuffletable__col shuffletable__col--center">
+                  <button id="btnShuffle" class="btn btn-primary btn-block btn-lg form-shuffle__btn-shuffle" type="submit">&raquo;</button>
+                </td>
+                <td class="shuffletable__col shuffletable__col--right">
+                  <textarea id="inputResult" class="inputarea form-shuffle__input-result"></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </main>
+    </div>
+
+    <footer class="layout__footer">
+      <small>&copy; 2016 Ancar Inc.</small>
+    </footer>
+  </div>
+</body>
+</html>
