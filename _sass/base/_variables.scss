@@ -1,9 +1,14 @@
 $white : #fff;
+
 $gray  : #544;
 $gray-light  : lighten($gray, 15%);
 $gray-lighter: rgba($gray, 0.15);
 
 $primary: #ff7736;
+$success: #a6bb00;
+$danger:  #ea5549;
+$warning: #fcc633;
+
 
 $link-color      : $primary;
 $link-hover-color: lighten($primary, 15%);
@@ -11,10 +16,10 @@ $link-hover-color: lighten($primary, 15%);
 $font-family-sans: "Ubuntu", sans-serif;
 $font-family-mono: "PT Mono", "Ubuntu Mono", monospace;
 
-$font-size-small   : 16px;
-$font-size-regular : 20px;
-$font-size-large   : 24px;
-$font-size-x-large : 32px;
+$font-size-small    : 16px;
+$font-size-regular  : 20px;
+$font-size-large    : 24px;
+$font-size-x-large  : 32px;
 
 $line-height: 1.7;
 
@@ -39,4 +44,28 @@ $zindex-logo: 480;
 $media-breakpoints: (
   mobile : 'screen and (max-width: 480px)',
   desktop: 'screen and (min-width: 481px)',
+);
+
+$brand-colors: (
+  primary: (
+    color: $white,
+    bg: $primary,
+  ),
+  secondary: (
+    color: $gray,
+    bg: $white,
+    border: $gray-light,
+  ),
+  success: (
+    color: $white,
+    bg: $success,
+  ),
+  danger: (
+    color: $white,
+    bg: $danger,
+  ),
+  warning: (
+    color: $white,
+    bg: $warning,
+  ),
 );

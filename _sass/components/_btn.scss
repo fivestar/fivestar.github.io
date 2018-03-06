@@ -1,0 +1,58 @@
+.btn {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: $font-weight-normal;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  user-select: none;
+  transition: all .1s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  @each $type, $brand-map in $brand-colors {
+    &--#{$type} {
+      color: map-get($brand-map, color);
+      background-color: map-get($brand-map, bg);
+      @if map-has-key($brand-map, border) {
+        border-color: map-get($brand-map, border);
+      }
+      &:hover {
+        color: lighten(map-get($brand-map, color), 20%);
+        background-color: lighten(map-get($brand-map, bg), 10%);
+        @if map-has-key($brand-map, border) {
+          border-color: lighten(map-get($brand-map, border), 20%);
+        }
+      }
+      &[disabled],
+      &--disabled {
+        background-color: lighten(map-get($brand-map, bg), 20%);
+      }
+    }
+  }
+
+  & {
+    padding: 4px 8px;
+    font-size: $font-size-regular;
+  }
+  &--lg {
+    padding: 8px 16px;
+    font-size: 24px;
+  }
+  &--xl {
+    padding: 16px 32px;
+    font-size: 36px;
+  }
+}
+
+.btn--disabled,
+.btn[disabled],
+a.btn--disabled {
+  pointer-events: none;
+}
