@@ -2,15 +2,11 @@
 layout: default
 ---
 
-<header class="header header--home">
-  <h1 class="header__headline">Home</h1>
+<header class="header">
+  <h1 class="header__headline">About</h1>
 </header>
 
 <section id="about" class="content">
-  <header class="content__header">
-    <h1 class="content__headline">About Me</h1>
-  </header>
-
   <dl class="infolist">
     <dt class="infolist__term">
       Katsuhiro Ogawa / 小川 雄大🇯🇵
@@ -19,13 +15,13 @@ layout: default
       a.k.a. <a href="https://github.com/fivestar">fivestar</a>
     </dd>
     <dt class="infolist__term">
-      Software Engineer, Technical Book Writing, Engineering Advising
+      Principal Engineer at <a href="https://about.mercari.com/">Mercari Inc.</a>
     </dt>
     <dt class="infolist__term">
-      Work at <a href="https://about.mercari.com/">Mercari Inc.</a>
+      Technical Book Writing, Engineering Advising
     </dt>
     <dt class="infolist__term">
-      Born on <time datetime="1987-06-18">June 18, 1987</time> in Saitama, Japan
+      Born on <time datetime="1987-06-18">June 18, 1987</time> in Kawaguchi, Saitama
     </dt>
     <dt class="infolist__term">
       Live in Tokyo
@@ -38,6 +34,28 @@ layout: default
     </dt>
   </dl><!-- /.infolist -->
 </section><!-- /#about -->
+
+<section id="apps" class="content">
+  <header class="content__header">
+    <h1 class="content__headline">Apps</h1>
+  </header>
+
+  <dl class="infolist">
+    <dt class="infolist__term">
+      <a href="{{ "/kana/" | relative_url }}">Kana</a>
+    </dt>
+    <dd class="infolist__detail">
+      Japanese &quot;hiragana/katakana&quot; and &quot;zenkaku/hankaku&quot; transformer.
+    </dd>
+
+    <dt class="infolist__term">
+      <a href="{{ "/timer/" | relative_url }}">Timer</a>
+    </dt>
+    <dd class="infolist__detail">
+      Simple web countdown timer.
+    </dd>
+  </dl><!-- /.infolist -->
+</section><!-- /#apps -->
 
 <section id="links" class="content">
   <header class="content__header">
@@ -72,31 +90,9 @@ layout: default
   </dl><!-- /.infolist -->
 </section><!-- /#links -->
 
-<section id="services" class="content">
+<section id="repos" class="content">
   <header class="content__header">
-    <h1 class="content__headline">Services</h1>
-  </header>
-
-  <dl class="infolist">
-    <dt class="infolist__term">
-      <a href="{{ "/kana/" | relative_url }}">KANA</a>
-    </dt>
-    <dd class="infolist__detail">
-      Japanese &quot;hiragana/katakana&quot; and &quot;zenkaku/hankaku&quot; transformer.
-    </dd>
-
-    <dt class="infolist__term">
-      <a href="{{ "/timer/" | relative_url }}">Timer</a>
-    </dt>
-    <dd class="infolist__detail">
-      Simple web countdown timer.
-    </dd>
-  </dl><!-- /.infolist -->
-</section><!-- /#services -->
-
-<section id="libs" class="content">
-  <header class="content__header">
-    <h1 class="content__headline">Libraries</h1>
+    <h1 class="content__headline">Repositories</h1>
   </header>
 
   <dl class="infolist">
@@ -128,7 +124,7 @@ layout: default
       GitHub web-hooked event handling framework.
     </dd>
   </dl><!-- /.infolist -->
-</section><!-- /#libs -->
+</section><!-- /#repos -->
 
 <section id="books" class="content">
   <header class="content__header">
