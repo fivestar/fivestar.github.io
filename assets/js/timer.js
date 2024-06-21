@@ -3,108 +3,135 @@
  *
  * (C) 2016 OGAWA Katsuhiro
  */
-!function($) {
+!function () {
 
-  var Timer;
+  class Timer {
+    #seconds;
+    #timerId;
+    constructor(display, audio) {
+      this.display = display;
+      this.displayTime = display.querySelector('.timer-display__time');
+      this.audio = audio;
+      this.#timerId = null;
+      this.#seconds = 0;
+    }
 
-  Timer = function(el, audio) {
-    this.$el = $(el);
-    this.audio = audio;
-    this.timerId = null;
-  }
+    update() {
+      this.displayTime.textContent = toTimeString(this.#seconds)
 
-  Timer.prototype = {
+      this.display.classList.remove('timer-display--warning', 'timer-display--alert', 'timer-display--timeup')
+      if (this.#seconds <= 0) {
+        this.display.classList.add('timer-display--timeup')
+      } else if (this.#seconds <= 30) {
+        this.display.classList.add('timer-display--alert')
+      } else if (this.#seconds <= 60) {
+        this.display.classList.add('timer-display--warning')
+      }
+    }
 
-    times: function(times) {
-      if (times != undefined) {
-        this.$el.text(toTime(times)).data('times', times);
+    start(ts) {
+      this.reset(ts);
 
-        if (times < 60 && !this.$el.hasClass('timer-warning')) {
-          this.$el.addClass('timer-warning');
-        } else if (times >= 60 && this.$el.hasClass('timer-warning')) {
-          this.$el.removeClass('timer-warning');
+      this.#timerId = setInterval(() => {
+        this.#seconds = this.#seconds - 1;
+        this.update();
+
+        if (this.#seconds == 0) {
+          this.gong();
         }
+      }, 1000/* 1s */);
 
-        return this;
-      }
-
-      return this.$el.data('times');
+      return this.#timerId;
     }
 
-  , start: function(times) {
-      if (this.timerId) {
-        return false;
-      }
+    reset(ts) {
+      this.#seconds = toSeconds(ts);
+      this.update();
 
-      this.times(times);
-
-      this.timerId = setInterval($.proxy(function() {
-        var times = this.times() - 1;
-
-        if (times == 0) {
-          this.fire();
-          return;
-        }
-
-        this.times(times);
-      }, this), 1000);
-
-      return this.timerId;
-    }
-
-  , reset: function() {
-      this.times(0);
-
-      if (this.timerId) {
-        clearInterval(this.timerId);
-        this.timerId = null;
+      if (this.#timerId) {
+        clearInterval(this.#timerId);
+        this.#timerId = null;
       }
     }
 
-  , fire: function() {
+    gong() {
       if (this.audio) {
         this.audio.play();
       }
-
-      this.reset();
     }
-
   }
 
-  function toTime(times) {
-    var m, s;
-
-    m = Math.floor(times / 60);
-    s = times % 60;
-    if (m < 10) {
-      m = '0' + m;
-    }
-    if (s < 10) {
-      s = '0' + s;
+  function toSeconds(timeString) {
+    const parts = timeString.split(':');
+    if (parts.length !== 2) {
+      throw new TypeError('Invalid time format. Expected "MM:SS".');
     }
 
-    return m + ':' + s;
+    const [minutes, seconds] = parts.map(Number);
+    if (isNaN(minutes) || isNaN(seconds) || Math.abs(seconds) >= 60) {
+      throw new TypeError('Invalid time values. Expected "MM:SS" with valid minute and second values.');
+    }
+
+    return minutes * 60 + seconds;
   }
 
-  $(function() {
-    var timer, audio;
+  function toTimeString(seconds) {
+    const absSeconds = Math.abs(seconds);
+    const sign = seconds < 0 ? '-' : '';
+    const minutes = Math.floor(absSeconds / 60);
+    const remainingSeconds = absSeconds % 60;
+    return `${sign}${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }
 
-    audio = new Audio('/assets/audio/dora.wav')
+  document.addEventListener("DOMContentLoaded", () => {
+    const audio = new Audio('/assets/audio/dora.wav')
     audio.volume = 1.0;
 
-    timer = new Timer(document.getElementById('timer-value'), audio);
+    const display = document.getElementById('timer-display');
+    const timer = new Timer(display, audio);
 
-    $('.timer-start').on('click', function() {
-      timer.start($('#timer-times').val());
+    const time = document.querySelector("#timer-input");
+    const timeInput = time.querySelector(".input-field");
+    const timePicker = time.querySelector(".time-picker");
+    const start = document.querySelector("#timer-start");
+    const gong = document.querySelector("#timer-gong");
+    const reset = document.querySelector("#timer-reset");
+
+    start.addEventListener("click", () => timer.start(timeInput.value))
+    gong.addEventListener("click", () => timer.gong())
+    reset.addEventListener("click", () => timer.reset(timeInput.value))
+
+    timeInput.addEventListener('focus', () => {
+      const rect = timeInput.getBoundingClientRect();
+      timePicker.style.top = rect.bottom + window.scrollY + 'px';
+      timePicker.style.left = rect.left + window.scrollX + 'px';
+      timePicker.style.display = 'block';
     });
 
-    $('.timer-fire').on('click', function() {
-      timer.fire();
+    document.addEventListener('click', (event) => {
+      if (!timeInput.contains(event.target) && !timePicker.contains(event.target)) {
+        timePicker.style.display = 'none';
+      }
     });
 
-    $('.timer-reset').on('click', function() {
-      timer.reset();
+    timePicker.addEventListener('click', (event) => {
+      if (event.target.tagName === 'BUTTON') {
+        timeInput.value = event.target.getAttribute('data-time');
+        timePicker.style.display = 'none';
+      }
     });
-  });
 
-}(window.jQuery);
+    timeInput.addEventListener('change', () => {
+      try {
+        timeInput.classList.remove('input-field--error');
+        toSeconds(timeInput.value)
+      } catch (e) {
+        if (e instanceof TypeError) {
+          timeInput.classList.add('input-field--error');
+        }
+      }
+
+    });
+  })
+
+}();
