@@ -1,5 +1,0 @@
-@mixin media($breakpoint) {
-  @media #{map-get($media-breakpoints, $breakpoint)} {
-    @content;
-  }
-}
