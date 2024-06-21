@@ -309,7 +309,7 @@ textarea {
 /* component/input-field */
 .input-field {
   padding: 3px 7px;
-  border: 1px solid var(--gray-alpha-10);
+  border: 1px solid transparent;
   border-radius: 4px;
   background-color: var(--gray-alpha-10);
   font-size: var(--font-size-small);
@@ -391,20 +391,30 @@ textarea {
 
 /* pages/kana */
 .kana-form {
+  max-width: 720px;
+
   fieldset {
     margin: 0px;
     padding: 0px;
     border: none;
   }
 
-  &+& {
+  &.kana-form--source {
+    .kana-control__label {
+      font-weight: var(--font-weight-medium);
+
+      &::before {
+        content: '>> ';
+      }
+    }
+  }
+
+  &.kana-form--dest {
     margin-top: 20px;
   }
 }
 
 .kana-control {
-  max-width: 720px;
-
   &+& {
     margin-top: 16px;
   }
@@ -416,7 +426,8 @@ textarea {
 
   .kana-control__area {
     position: relative;
-    border: 1px solid var(--gray-alpha-30);
+    background-color: var(--gray-alpha-10);
+    border: 1px solid transparent;
     border-radius: 8px;
     padding: 4px;
   }
@@ -427,7 +438,7 @@ textarea {
     field-sizing: content;
     resize: none;
     outline: none;
-    background-color: var(--white);
+    background-color: transparent;
     border: none;
     padding: 10px;
     font-size: var(--font-size-small);
