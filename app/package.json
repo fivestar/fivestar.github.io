@@ -18,10 +18,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run copy-build",
-    "copy-build": "cp -r build/* ../jekyll/assets/app && cp build/asset-manifest.json ../jekyll/_data/",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "copy-build": "cp -r build/* ../jekyll/assets/app && cp build/asset-manifest.json ../jekyll/_data/"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +40,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {}
+  }
 }

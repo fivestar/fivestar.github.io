@@ -3,7 +3,10 @@
 ## Development
 
 ```console
-bundle install
+$ npm run bundle-install
+$ cd app & npm install
+```
 
-bundle exec jekyll serve
+```console
+$ npm run watch
 ```

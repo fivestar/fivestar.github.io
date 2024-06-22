@@ -1,12 +1,14 @@
-source: .
-destination: ./_site
-plugins:
-  - jekyll_begin_end
-
-# site settings
 title: fvstr.jp
-description: "fivestar's personal website"
+description: >-
+  fivestar's personal website
 exclude:
   - CNAME
   - LICENSE.txt
   - README.md
+
+source: "jekyll"
+destination: "jekyll/_site"
+plugins:
+  - jekyll_begin_end
+
+# site settings
