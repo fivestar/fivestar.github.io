@@ -6,8 +6,8 @@ exclude:
   - LICENSE.txt
   - README.md
 
-source: "jekyll"
-destination: "jekyll/_site"
+source: .
+destination: ./_site
 plugins:
   - jekyll_begin_end
 
