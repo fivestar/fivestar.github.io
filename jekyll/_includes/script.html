@@ -1,0 +1,16 @@
+<script src="/assets/js/vendor/p2js.mb_convert_kana.js"></script>
+<script src="/assets/js/kana.js"></script>
+<script src="/assets/js/timer.js"></script>
+
+{% assign manifest = site.data.asset-manifest.files -%}
+{% for item in manifest %}
+  {%- assign file = item[1] -%}
+  {%- assign isJs = file | ends_with: ".js" -%}
+  {%- assign isCss = file | ends_with: ".css" -%}
+  {%- if isJs -%}
+    <script src="{{ "/assets/app" | append: file | relative_url }}"></script>
+  {% endif -%}
+  {%- if isCss -%}
+    <link rel="stylesheet" href="{{ "/assets/app" | append: file | relative_url }}" />
+  {% endif -%}
+{% endfor %}

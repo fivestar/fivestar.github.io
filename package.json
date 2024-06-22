@@ -1,0 +1,8 @@
+{
+  "name": "fivestar.github.io",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "start": "./scripts/start.sh"
+  }
+}

@@ -2,5 +2,7 @@
 /.jekyll-metadata
 /Gemfile.lock
 
-/.jekyll/_site/
+/jekyll/_site/
+
+/scripts/*.pid
 
