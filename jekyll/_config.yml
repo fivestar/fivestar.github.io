@@ -1,0 +1,14 @@
+title: fvstr.jp
+description: >-
+  fivestar's personal website
+exclude:
+  - CNAME
+  - LICENSE.txt
+  - README.md
+
+source: .
+destination: ./_site
+plugins:
+  - jekyll_begin_end
+
+# site settings

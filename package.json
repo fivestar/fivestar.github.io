@@ -1,0 +1,19 @@
+{
+  "name": "fivestar.github.io",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run serve:jekyll\" \"npm run start:react\"",
+    "serve:jekyll": "cd jekyll && exec jekyll serve --livereload",
+    "start:react": "cd app && npm start",
+    "build:react": "cd app && npm run build && npm run copy-build",
+    "copy-build": "cp -r app/build/* jekyll/assets/app && cp app/build/asset-manifest.json jekyll/_data/",
+    "watch": "concurrently --kill-others-on-fail \"npm run watch-react\" \"npm run serve:jekyll\"",
+    "watch-react": "cd app && watch 'npm run build && npm run copy-build' ./src",
+    "bundle-install": "cd jekyll && bundle install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "watch": "^1.0.2"
+  }
+}

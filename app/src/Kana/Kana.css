@@ -1,0 +1,60 @@
+.kana-form {
+  max-width: 720px;
+
+  fieldset {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+  }
+
+  &.kana-form--source {
+    .kana-control__label {
+      font-weight: var(--font-weight-medium);
+
+      &::before {
+        content: '>> ';
+      }
+    }
+  }
+
+  &.kana-form--dest {
+    margin-top: 20px;
+  }
+}
+
+.kana-control {
+  &+& {
+    margin-top: 16px;
+  }
+
+  .kana-control__label {
+    display: block;
+    font-size: var(--font-size-regular);
+  }
+
+  .kana-control__area {
+    position: relative;
+    background-color: var(--gray-alpha-10);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 4px;
+  }
+
+  .kana-control__input {
+    width: 100%;
+    min-height: 4rem;
+    field-sizing: content;
+    resize: none;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    font-size: var(--font-size-small);
+  }
+
+  .kana-control__button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
