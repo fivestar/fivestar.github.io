@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ControlsDisabledContext } from './ControlsDisabledContext';
+import React from 'react';
+import { useControlsDisabled } from './ControlsDisabledContext';
 
 interface ControlButtonProps {
   text: string;
@@ -7,7 +7,7 @@ interface ControlButtonProps {
 }
 
 export function ControlButton({ text, handleControl }: ControlButtonProps) {
-  const disabled = useContext(ControlsDisabledContext);
+  const disabled = useControlsDisabled();
 
   return (
     <button

@@ -1,13 +1,5 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  ChangeEvent,
-  useState,
-  useEffect,
-  useRef,
-  useContext,
-} from 'react';
-import { ControlsDisabledContext } from './ControlsDisabledContext';
+import React, { Dispatch, SetStateAction, ChangeEvent, useState, useEffect, useRef } from 'react';
+import { useControlsDisabled } from './ControlsDisabledContext';
 
 interface TimeFieldProps {
   inputTime: string;
@@ -18,7 +10,7 @@ export function TimeField({ inputTime, setInputTime }: TimeFieldProps) {
   const [showTimePicker, setShowTimePicker] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const pickerRef = useRef<HTMLInputElement | null>(null);
-  const disabled = useContext(ControlsDisabledContext);
+  const disabled = useControlsDisabled();
 
   const timeChoices = ['1:00', '3:00', '5:00', '10:00', '15:00', '20:00', '30:00'];
 
