@@ -4,7 +4,7 @@ interface SourceFieldProps {
   setText: Function;
 }
 
-function SourceField({
+export function SourceField({
   text,
   placeholder,
   setText,
@@ -31,5 +31,3 @@ function SourceField({
     </div>
   );
 }
-
-export default SourceField;

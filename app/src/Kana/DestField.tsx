@@ -10,7 +10,7 @@ interface DestFieldProps {
   onCopy: Function;
 }
 
-function DestField({
+export function DestField({
   text,
   placeholder,
   label,
@@ -66,5 +66,3 @@ function DestField({
     </div>
   )
 }
-
-export default DestField;

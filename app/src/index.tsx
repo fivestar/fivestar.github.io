@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import KanaApp from './Kana/KanaApp';
+import TimerApp from './Timer/TimerApp';
 import reportWebVitals from './reportWebVitals';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,6 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
     root.render(
       <React.StrictMode>
         <KanaApp />
+      </React.StrictMode>
+    );
+  }
+
+  const timerRootElement = document.getElementById('timer-root')
+  if (timerRootElement) {
+    const root = ReactDOM.createRoot(
+      timerRootElement as HTMLElement
+    );
+    root.render(
+      <React.StrictMode>
+        <TimerApp />
       </React.StrictMode>
     );
   }

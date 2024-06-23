@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import SourceField from './SourceField';
-import "./KanaApp.css";
-import DestField from './DestField';
+import "./Kana.css";
+import { SourceField } from './SourceField';
+import { DestField } from './DestField';
 
-function KanaApp() {
+export default function KanaApp() {
   const [text, setText] = useState<string>("");
   const [activeId, setActiveId] = useState<string | null>(null);
-
-  const handleCopy = (id: string | null) => {
-    setActiveId(id);
-  };
 
   useEffect(() => {
     setActiveId(null);
   }, [text]);
+
+  const handleCopy = (id: string | null) => {
+    setActiveId(id);
+  };
 
   const converters = [
     ['to 半角英数/全角カナ', 'KVas'],
@@ -51,5 +51,3 @@ function KanaApp() {
     </div>
   );
 }
-
-export default KanaApp;

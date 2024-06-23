@@ -308,6 +308,7 @@ textarea {
 
 /* component/input-field */
 .input-field {
+  max-width: 100%;
   padding: 3px 7px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -382,84 +383,5 @@ textarea {
 
   .infolist__detail {
     margin-left: 0;
-  }
-}
-
-
-/* utils/dot */
-
-
-
-/* pages/timer */
-.timer-controls {
-  margin-bottom: 30px;
-}
-
-.timer-time {
-  display: inline-block;
-
-  .input-field {
-    width: 5rem;
-  }
-
-  .time-picker {
-    width: 5rem;
-  }
-}
-
-.time-picker {
-  display: none;
-  position: absolute;
-  background-color: var(--white);
-  border: 1px solid var(--gray-alpha-30);
-  z-index: 1000;
-
-  .time-picker__item {
-    display: block;
-    width: 100%;
-    padding: 5px;
-    margin: 0;
-    border: none;
-    background-color: var(--white);
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--gray-alpha-10);
-    }
-  }
-}
-
-.timer-display {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-
-  background-color: var(--gray-alpha-10);
-
-  .timer-display__time {
-    font-family: var(--font-family-display);
-    font-weight: var(--font-weight-semi-bold);
-    font-size: calc(20vw + 10vh);
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  &.timer-display--warning {
-    background-color: var(--safety-yellow);
-  }
-
-  &.timer-display--alert {
-    background-color: var(--safety-orange);
-    color: var(--white)
-  }
-
-  &.timer-display--timeup {
-    background-color: var(--safety-red);
-    color: var(--white)
   }
 }
