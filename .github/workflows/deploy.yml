@@ -54,10 +54,6 @@ jobs:
         run: |
           npm run copy-build
 
-      - name: Copy React build
-        run: |
-          npm run copy-build
-
       - name: Build with Jekyll
         run: |
           cd jekyll
