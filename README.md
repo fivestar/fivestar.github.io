@@ -5,7 +5,8 @@
 ```console
 $ npm install
 $ npm run bundle-install
-$ npm run build:react
+$ cd app
+$ npm install
 ```
 
 ```console

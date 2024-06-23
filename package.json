@@ -1,6 +1,6 @@
 {
   "name": "fivestar.github.io",
-  "version": "2.1.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "start": "concurrently \"npm run serve:jekyll\" \"npm run start:react\"",
@@ -13,6 +13,12 @@
     "fmt": "prettier --write .",
     "lint": "eslint .",
     "bundle-install": "cd jekyll && bundle install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "^9.5.0",

@@ -24,12 +24,6 @@
     "eject": "react-scripts eject",
     "copy-build": "cp -r build/* ../jekyll/assets/app && cp build/asset-manifest.json ../jekyll/_data/"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -41,13 +35,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.5.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.3",
-    "globals": "^15.6.0",
-    "prettier": "^3.3.2",
-    "typescript-eslint": "^7.13.1"
   }
 }
