@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useInterval } from 'usehooks-ts'
 import "./Timer.css";
 import { TimeField } from './TimeField';

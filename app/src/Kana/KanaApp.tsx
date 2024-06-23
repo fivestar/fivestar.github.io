@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import "./Kana.css";
 import { SourceField } from './SourceField';
 import { DestField } from './DestField';
