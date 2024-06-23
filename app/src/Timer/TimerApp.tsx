@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useInterval } from 'usehooks-ts'
 import "./Timer.css";
 import { TimeField } from './TimeField';
@@ -12,6 +12,8 @@ export default function TimerApp() {
   const [seconds, setSeconds] = useState<number>(5 * 60);
   const [delay, setDelay] = useState<number | null>(null);
   const [isRunning, setIsRunning] = useState<boolean>(false);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const audioBufferRef = useRef<AudioBuffer | null>(null);
 
   useInterval(() => {
     setSeconds(seconds - 1);
@@ -26,6 +28,17 @@ export default function TimerApp() {
   useEffect(() => {
     setDelay(isRunning ? INTERVAL : null);
   }, [isRunning])
+
+  useEffect(() => {
+    audioContextRef.current = new AudioContext();
+    fetch('/assets/app/assets/audio/dora.m4a')
+      .then(response => response.arrayBuffer())
+      .then(arrayBuffer => audioContextRef.current?.decodeAudioData(arrayBuffer))
+      .then(audioBuffer => {
+        audioBufferRef.current = audioBuffer || null;
+      })
+      .catch(err => console.error('Error loading audio file', err));
+  }, []);
 
   const handleStart = () => {
     try {
@@ -56,9 +69,12 @@ export default function TimerApp() {
   };
 
   const playGong = () => {
-    const audio = new Audio('/assets/app/assets/audio/dora.m4a');
-    audio.volume = 1.0;
-    audio.play();
+    if (audioBufferRef.current && audioContextRef.current) {
+      const source = audioContextRef.current.createBufferSource();
+      source.buffer = audioBufferRef.current;
+      source.connect(audioContextRef.current.destination);
+      source.start(0);
+    }
   };
 
   const controlDisabled = !isValidTimeString(inputTime)
