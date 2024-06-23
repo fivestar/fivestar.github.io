@@ -33,9 +33,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+          bundler-cache: true
+
       - name: Install dependencies
         run: |
           npm install
+          npm run bundle-install
 
       - name: Build React app
         run: |
@@ -47,16 +54,19 @@ jobs:
         run: |
           npm run copy-build
 
+      - name: Copy React build
+        run: |
+          npm run copy-build
+
       - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./jekyll
-          destination: ./_site
+        run: |
+          cd jekyll
+          bundle exec jekyll build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./_site"
+          path: "./jekyll/_site"
 
   # Deployment job
   deploy:
