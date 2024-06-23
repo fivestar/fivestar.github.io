@@ -9,6 +9,10 @@ export function SourceField({
   placeholder,
   setText,
 }: SourceFieldProps) {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(event.target.value);
+  };
+
   return (
     <div className="kana-control">
       <label className="kana-control__label" htmlFor="kana-source">Input</label>
@@ -18,15 +22,9 @@ export function SourceField({
           id="kana-source"
           value={text}
           placeholder={placeholder}
-          onChange={e => setText(e.target.value)}
+          onChange={handleChange}
         />
-        <button
-          className="btn kana-control__button"
-          onClick={() => setText("")}
-          disabled={!text}
-        >
-          Reset
-        </button>
+        <button className="btn kana-control__button" onClick={() => setText("")} disabled={!text}>Reset</button>
       </div>
     </div>
   );

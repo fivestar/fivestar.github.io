@@ -3,7 +3,7 @@ import { useInterval } from 'usehooks-ts'
 import "./Timer.css";
 import { TimeField } from './TimeField';
 import { ControlButton } from './ControlButton';
-import { toSeconds, toTimeString } from './utils'
+import { toSeconds, toTimeString, isValidTimeString } from './utils'
 
 const INTERVAL = 1000;
 
@@ -61,13 +61,15 @@ export default function TimerApp() {
     audio.play();
   };
 
+  const controlDisabled = !isValidTimeString(inputTime)
+
   const renderTriggerButton = () => {
     if (!isRunning) {
-      return <ControlButton text="Start" handleControl={handleStart} />;
+      return <ControlButton text="Start" handleControl={handleStart} disabled={controlDisabled} />;
     } else if (delay == null) {
-      return <ControlButton text="Resume" handleControl={handleResume} />;
+      return <ControlButton text="Resume" handleControl={handleResume} disabled={controlDisabled} />;
     } else {
-      return <ControlButton text="Pause" handleControl={handlePause} />;
+      return <ControlButton text="Pause" handleControl={handlePause} disabled={controlDisabled} />;
     }
   }
 
@@ -90,8 +92,8 @@ export default function TimerApp() {
           setInputTime={setInputTime}
         />
         {renderTriggerButton()}
-        <ControlButton text="Reset" handleControl={handleReset} />
-        <ControlButton text="Gong" handleControl={playGong} />
+        <ControlButton text="Reset" handleControl={handleReset} disabled={controlDisabled} />
+        <ControlButton text="Gong" handleControl={playGong} disabled={controlDisabled} />
       </div>
 
       <div className={'timer-display ' + renderDisplayState()}>

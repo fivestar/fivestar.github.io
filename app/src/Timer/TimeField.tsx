@@ -17,8 +17,11 @@ export function TimeField({
 
   const timeChoices = ['1:00', '3:00', '5:00', '10:00', '15:00', '20:00', '30:00'];
 
+  useEffect(() => {
+    setValid(isValidTimeString(inputTime));
+  }, [inputTime]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValid(isValidTimeString(event.target.value));
     setInputTime(event.target.value);
   };
 
@@ -56,7 +59,7 @@ export function TimeField({
     <div className="timer-control timer-control--time">
       <input
         type="text"
-        className={'input-field' + (valid ? '' : 'input-field--error')}
+        className={'input-field' + (valid ? '' : ' input-field--error')}
         ref={inputRef}
         value={inputTime}
         onChange={handleChange}
