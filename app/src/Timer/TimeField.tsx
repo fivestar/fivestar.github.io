@@ -1,15 +1,20 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import { ControlsDisabledContext } from "./ControlsDisabledContext";
+import React, {
+  Dispatch,
+  SetStateAction,
+  ChangeEvent,
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+} from 'react';
+import { ControlsDisabledContext } from './ControlsDisabledContext';
 
 interface TimeFieldProps {
   inputTime: string;
-  setInputTime: Function;
+  setInputTime: Dispatch<SetStateAction<string>>;
 }
 
-export function TimeField({
-  inputTime,
-  setInputTime,
-}: TimeFieldProps) {
+export function TimeField({ inputTime, setInputTime }: TimeFieldProps) {
   const [showTimePicker, setShowTimePicker] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const pickerRef = useRef<HTMLInputElement | null>(null);
@@ -17,13 +22,13 @@ export function TimeField({
 
   const timeChoices = ['1:00', '3:00', '5:00', '10:00', '15:00', '20:00', '30:00'];
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputTime(event.target.value);
   };
 
-  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = () => {
     if (!inputRef.current || !pickerRef.current) {
-      return
+      return;
     }
 
     const rect = inputRef.current.getBoundingClientRect();
@@ -32,9 +37,14 @@ export function TimeField({
     setShowTimePicker(true);
   };
 
+  // eslint-disable-next-line
   const handleDocumentClick = (event: any) => {
-    if (pickerRef.current && !pickerRef.current.contains(event.target) &&
-      inputRef.current && !inputRef.current.contains(event.target)) {
+    if (
+      pickerRef.current &&
+      !pickerRef.current.contains(event.target) &&
+      inputRef.current &&
+      !inputRef.current.contains(event.target)
+    ) {
       setShowTimePicker(false);
     }
   };
@@ -61,10 +71,15 @@ export function TimeField({
         onChange={handleChange}
         onFocus={handleFocus}
       />
-      <div className={'time-picker' + (showTimePicker ? ' time-picker--shown' : '')} ref={pickerRef}>
-        {timeChoices.map(tm =>
-          <button className="time-picker__item" onClick={() => handleTimePick(tm)}>{tm}</button>
-        )}
+      <div
+        className={'time-picker' + (showTimePicker ? ' time-picker--shown' : '')}
+        ref={pickerRef}
+      >
+        {timeChoices.map((tm, index) => (
+          <button key={index} className="time-picker__item" onClick={() => handleTimePick(tm)}>
+            {tm}
+          </button>
+        ))}
       </div>
     </div>
   );

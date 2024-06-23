@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface DestFieldProps {
-  text: string
-  placeholder: string
+  text: string;
+  placeholder: string;
   label: string;
   converter: string;
   id: string;
   activeId: string | null;
-  onCopy: Function;
+  onCopy: (id: string) => void;
 }
 
 export function DestField({
@@ -30,11 +30,14 @@ export function DestField({
   }, [activeId, id]);
 
   const handleCopyClick = () => {
-    navigator.clipboard.writeText(convertedText).then(() => {
-      onCopy(id);
-    }).catch(err => {
-      console.error('Failed to copy text: ', err);
-    });
+    navigator.clipboard
+      .writeText(convertedText)
+      .then(() => {
+        onCopy(id);
+      })
+      .catch((err) => {
+        console.error('Failed to copy text: ', err);
+      });
   };
 
   const convertedText = mb_convert_kana(text, converter);
@@ -42,7 +45,9 @@ export function DestField({
 
   return (
     <div className="kana-control">
-      <label className="kana-control__label" htmlFor={id}>{label}</label>
+      <label className="kana-control__label" htmlFor={id}>
+        {label}
+      </label>
       <div className="kana-control__area">
         <textarea
           className="kana-control__input"
@@ -51,8 +56,10 @@ export function DestField({
           placeholder={convertedPlaceholder}
           readOnly={true}
         />
-        <button className="btn kana-control__button" onClick={handleCopyClick} disabled={!text}>{buttonLabel}</button>
+        <button className="btn kana-control__button" onClick={handleCopyClick} disabled={!text}>
+          {buttonLabel}
+        </button>
       </div>
     </div>
-  )
+  );
 }

@@ -10,10 +10,19 @@
     "copy-build": "cp -r app/build/* jekyll/assets/app && cp app/build/asset-manifest.json jekyll/_data/",
     "watch": "concurrently --kill-others-on-fail \"npm run watch-react\" \"npm run serve:jekyll\"",
     "watch-react": "cd app && watch 'npm run build && npm run copy-build' ./src",
+    "fmt": "prettier --write .",
+    "lint": "eslint .",
     "bundle-install": "cd jekyll && bundle install"
   },
   "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@shopify/prettier-plugin-liquid": "^1.5.0",
     "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.3",
+    "globals": "^15.6.0",
+    "prettier": "^3.3.2",
+    "typescript-eslint": "^7.13.1",
     "watch": "^1.0.2"
   }
 }

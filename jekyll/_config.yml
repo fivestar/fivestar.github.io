@@ -10,5 +10,4 @@ source: .
 destination: ./_site
 plugins:
   - jekyll_begin_end
-
 # site settings

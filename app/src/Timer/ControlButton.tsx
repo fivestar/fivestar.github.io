@@ -1,18 +1,21 @@
-import { useContext } from "react";
-import { ControlsDisabledContext } from "./ControlsDisabledContext";
+import React, { useContext } from 'react';
+import { ControlsDisabledContext } from './ControlsDisabledContext';
 
 interface ControlButtonProps {
   text: string;
-  handleControl: Function;
+  handleControl: () => void;
 }
 
-export function ControlButton({
-  text,
-  handleControl,
-}: ControlButtonProps) {
+export function ControlButton({ text, handleControl }: ControlButtonProps) {
   const disabled = useContext(ControlsDisabledContext);
 
   return (
-    <button className="btn timer-control timer-control--button" onClick={() => handleControl()} disabled={disabled}>{text}</button>
+    <button
+      className="btn timer-control timer-control--button"
+      onClick={() => handleControl()}
+      disabled={disabled}
+    >
+      {text}
+    </button>
   );
 }

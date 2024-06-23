@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import "./Kana.css";
+import React, { useState, useEffect } from 'react';
+import './Kana.css';
 import { SourceField } from './SourceField';
 import { DestField } from './DestField';
 
 export default function KanaApp() {
-  const [text, setText] = useState<string>("");
+  const [text, setText] = useState<string>('');
   const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function KanaApp() {
     ['かな to 全角カナ', 'CKVAS'],
     ['カナ to 全角かな', 'cHVAS'],
   ];
-  const placeholder = "みなとくあかさか9-7-1 ミッドタウン・タワー"
+  const placeholder = 'みなとくあかさか9-7-1 ミッドタウン・タワー';
 
   return (
     <>
@@ -34,7 +34,7 @@ export default function KanaApp() {
 
       <div className="kana-form kana-form--dest">
         <fieldset>
-          {converters.map((conv, index) =>
+          {converters.map((conv, index) => (
             <DestField
               key={index}
               text={text}
@@ -45,7 +45,7 @@ export default function KanaApp() {
               activeId={activeId}
               onCopy={handleCopy}
             />
-          )}
+          ))}
         </fieldset>
       </div>
     </>

@@ -5,7 +5,7 @@
 .timer-control {
   display: inline-block;
 
-  &+& {
+  & + & {
     margin-left: 8px;
   }
 
@@ -76,11 +76,11 @@
 
   &.timer-display--alert {
     background-color: var(--safety-orange);
-    color: var(--white)
+    color: var(--white);
   }
 
   &.timer-display--timeup {
     background-color: var(--safety-red);
-    color: var(--white)
+    color: var(--white);
   }
 }

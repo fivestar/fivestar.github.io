@@ -3,9 +3,9 @@
   --gray: #544;
   --gray-light: #806666;
 
-  --gray-alpha-30: rgb(from var(--gray) r g b / 0.30);
+  --gray-alpha-30: rgb(from var(--gray) r g b / 0.3);
   --gray-alpha-15: rgb(from var(--gray) r g b / 0.15);
-  --gray-alpha-10: rgb(from var(--gray) r g b / 0.10);
+  --gray-alpha-10: rgb(from var(--gray) r g b / 0.1);
 
   --primary: #ff7736;
   --primary-light: #ffab83;
@@ -17,8 +17,8 @@
   --link-color: var(--primary);
   --link-hover-color: var(--primary-light);
 
-  --font-family-sans: "Ubuntu", sans-serif;
-  --font-family-display: "Noto Sans Display", sans-serif;
+  --font-family-sans: 'Ubuntu', sans-serif;
+  --font-family-display: 'Noto Sans Display', sans-serif;
 
   --font-size-small: 16px;
   --font-size-regular: 20px;
@@ -241,7 +241,6 @@ textarea {
       color: var(--gray-alpha-15);
       content: '>';
     }
-
   }
 
   .header__subheadline {
@@ -254,7 +253,6 @@ textarea {
     }
   }
 }
-
 
 /* layout/main */
 .main {
@@ -275,7 +273,6 @@ textarea {
     width: 30px;
   }
 }
-
 
 /* components/btn */
 .btn {
@@ -346,10 +343,10 @@ textarea {
     margin-bottom: 8px;
 
     &::before {
-      content: '- '
+      content: '- ';
     }
 
-    &+& {
+    & + & {
       margin-top: -8px;
     }
   }
@@ -366,9 +363,9 @@ textarea {
 
     img {
       max-width: 100%;
-      box-shadow: 0 2px 4px var(--gray-alpha-30),
+      box-shadow:
+        0 2px 4px var(--gray-alpha-30),
         0 2px 18px var(--gray-alpha-15);
-
     }
   }
 

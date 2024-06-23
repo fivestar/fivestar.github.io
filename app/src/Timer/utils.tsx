@@ -6,7 +6,9 @@ export function toSeconds(timeString: string): number {
 
   const [minutes, seconds] = parts.map(Number);
   if (isNaN(minutes) || isNaN(seconds) || Math.abs(seconds) >= 60) {
-    throw new TypeError('Invalid time values. Expected "MM:SS" with valid minute and second values.');
+    throw new TypeError(
+      'Invalid time values. Expected "MM:SS" with valid minute and second values.'
+    );
   }
 
   return minutes * 60 + seconds;
@@ -14,11 +16,11 @@ export function toSeconds(timeString: string): number {
 
 export function isValidTimeString(timeString: string): boolean {
   try {
-    toSeconds(timeString)
+    toSeconds(timeString);
   } catch (e) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
 export function toTimeString(seconds: number): string {

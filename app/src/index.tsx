@@ -4,12 +4,10 @@ import KanaApp from './Kana/KanaApp';
 import TimerApp from './Timer/TimerApp';
 import reportWebVitals from './reportWebVitals';
 
-document.addEventListener("DOMContentLoaded", () => {
-  const kanaRootElement = document.getElementById('kana-root')
+document.addEventListener('DOMContentLoaded', () => {
+  const kanaRootElement = document.getElementById('kana-root');
   if (kanaRootElement) {
-    const root = ReactDOM.createRoot(
-      kanaRootElement as HTMLElement
-    );
+    const root = ReactDOM.createRoot(kanaRootElement as HTMLElement);
     root.render(
       <React.StrictMode>
         <KanaApp />
@@ -17,11 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  const timerRootElement = document.getElementById('timer-root')
+  const timerRootElement = document.getElementById('timer-root');
   if (timerRootElement) {
-    const root = ReactDOM.createRoot(
-      timerRootElement as HTMLElement
-    );
+    const root = ReactDOM.createRoot(timerRootElement as HTMLElement);
     root.render(
       <React.StrictMode>
         <TimerApp />
@@ -33,4 +29,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // to log results (for example: reportWebVitals(console.log))
   // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
   reportWebVitals();
-})
+});

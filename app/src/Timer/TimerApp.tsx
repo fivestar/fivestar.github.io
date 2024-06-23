@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { useInterval } from 'usehooks-ts'
-import "./Timer.css";
+import React, { useState, useEffect, useRef } from 'react';
+import { useInterval } from 'usehooks-ts';
+import './Timer.css';
 import { TimeField } from './TimeField';
 import { ControlButton } from './ControlButton';
-import { ControlsDisabledContext } from "./ControlsDisabledContext";
-import { toSeconds, toTimeString, isValidTimeString } from './utils'
+import { ControlsDisabledContext } from './ControlsDisabledContext';
+import { toSeconds, toTimeString, isValidTimeString } from './utils';
 
 const INTERVAL = 1000;
 
@@ -18,27 +18,27 @@ export default function TimerApp() {
 
   useInterval(() => {
     setSeconds(seconds - 1);
-  }, delay)
+  }, delay);
 
   useEffect(() => {
     if (seconds === 0) {
       playGong();
     }
-  }, [seconds])
+  }, [seconds]);
 
   useEffect(() => {
     setDelay(isRunning ? INTERVAL : null);
-  }, [isRunning])
+  }, [isRunning]);
 
   useEffect(() => {
     audioContextRef.current = new AudioContext();
     fetch('/assets/app/assets/audio/dora.m4a')
-      .then(response => response.arrayBuffer())
-      .then(arrayBuffer => audioContextRef.current?.decodeAudioData(arrayBuffer))
-      .then(audioBuffer => {
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) => audioContextRef.current?.decodeAudioData(arrayBuffer))
+      .then((audioBuffer) => {
         audioBufferRef.current = audioBuffer || null;
       })
-      .catch(err => console.error('Error loading audio file', err));
+      .catch((err) => console.error('Error loading audio file', err));
   }, []);
 
   const handleStart = () => {
@@ -47,8 +47,10 @@ export default function TimerApp() {
       setSeconds(seconds);
 
       setIsRunning(true);
-    } catch (e: any) {
-      console.error('Failed to parse time: ', e.message);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        console.error('Failed to parse time: ', e.message);
+      }
     }
   };
 
@@ -64,8 +66,10 @@ export default function TimerApp() {
 
     try {
       setSeconds(toSeconds(inputTime));
-    } catch (e: any) {
-      console.error('Failed to parse time: ', e.message);
+    } catch (e) {
+      if (e instanceof Error) {
+        console.error('Failed to parse time: ', e.message);
+      }
     }
   };
 
@@ -86,7 +90,7 @@ export default function TimerApp() {
     } else {
       return <ControlButton text="Pause" handleControl={handlePause} />;
     }
-  }
+  };
 
   const renderDisplayState = () => {
     if (seconds < 0) {
@@ -103,10 +107,7 @@ export default function TimerApp() {
     <>
       <div className="timer-controls">
         <ControlsDisabledContext.Provider value={!isValidTimeString(inputTime)}>
-          <TimeField
-            inputTime={inputTime}
-            setInputTime={setInputTime}
-          />
+          <TimeField inputTime={inputTime} setInputTime={setInputTime} />
           {renderTriggerButton()}
           <ControlButton text="Reset" handleControl={handleReset} />
           <ControlButton text="Gong" handleControl={playGong} />
@@ -117,5 +118,5 @@ export default function TimerApp() {
         <div className="timer-display__time ">{toTimeString(seconds)}</div>
       </div>
     </>
-  )
+  );
 }
