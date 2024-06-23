@@ -43,8 +43,7 @@ export default function TimerApp() {
 
   const handleStart = () => {
     try {
-      const seconds = toSeconds(inputTime);
-      setSeconds(seconds);
+      setSeconds(toSeconds(inputTime));
 
       setIsRunning(true);
     } catch (e: unknown) {
@@ -99,8 +98,9 @@ export default function TimerApp() {
       return 'timer-display--alert';
     } else if (seconds < 60) {
       return 'timer-display--warning';
+    } else {
+      return 'timer-display--default';
     }
-    return 'timer-display--default';
   };
 
   return (
