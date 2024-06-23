@@ -1,7 +1,0 @@
-```
-npm run fmt
-```
-
-```
-npm run lint
-```
