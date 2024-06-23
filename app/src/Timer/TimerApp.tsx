@@ -3,6 +3,7 @@ import { useInterval } from 'usehooks-ts'
 import "./Timer.css";
 import { TimeField } from './TimeField';
 import { ControlButton } from './ControlButton';
+import { ControlsDisabledContext } from "./ControlsDisabledContext";
 import { toSeconds, toTimeString, isValidTimeString } from './utils'
 
 const INTERVAL = 1000;
@@ -77,15 +78,13 @@ export default function TimerApp() {
     }
   };
 
-  const controlDisabled = !isValidTimeString(inputTime)
-
   const renderTriggerButton = () => {
     if (!isRunning) {
-      return <ControlButton text="Start" handleControl={handleStart} disabled={controlDisabled} />;
+      return <ControlButton text="Start" handleControl={handleStart} />;
     } else if (delay == null) {
-      return <ControlButton text="Resume" handleControl={handleResume} disabled={controlDisabled} />;
+      return <ControlButton text="Resume" handleControl={handleResume} />;
     } else {
-      return <ControlButton text="Pause" handleControl={handlePause} disabled={controlDisabled} />;
+      return <ControlButton text="Pause" handleControl={handlePause} />;
     }
   }
 
@@ -101,20 +100,22 @@ export default function TimerApp() {
   };
 
   return (
-    <div>
+    <>
       <div className="timer-controls">
-        <TimeField
-          inputTime={inputTime}
-          setInputTime={setInputTime}
-        />
-        {renderTriggerButton()}
-        <ControlButton text="Reset" handleControl={handleReset} disabled={controlDisabled} />
-        <ControlButton text="Gong" handleControl={playGong} disabled={controlDisabled} />
+        <ControlsDisabledContext.Provider value={!isValidTimeString(inputTime)}>
+          <TimeField
+            inputTime={inputTime}
+            setInputTime={setInputTime}
+          />
+          {renderTriggerButton()}
+          <ControlButton text="Reset" handleControl={handleReset} />
+          <ControlButton text="Gong" handleControl={playGong} />
+        </ControlsDisabledContext.Provider>
       </div>
 
       <div className={'timer-display ' + renderDisplayState()}>
         <div className="timer-display__time ">{toTimeString(seconds)}</div>
       </div>
-    </div>
+    </>
   )
 }

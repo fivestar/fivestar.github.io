@@ -25,7 +25,7 @@ export default function KanaApp() {
   const placeholder = "みなとくあかさか9-7-1 ミッドタウン・タワー"
 
   return (
-    <div>
+    <>
       <div className="kana-form kana-form--source">
         <fieldset>
           <SourceField text={text} placeholder={placeholder} setText={setText} />
@@ -48,6 +48,6 @@ export default function KanaApp() {
           )}
         </fieldset>
       </div>
-    </div>
+    </>
   );
 }
