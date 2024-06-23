@@ -14,12 +14,6 @@
     "lint": "eslint .",
     "bundle-install": "cd jekyll && bundle install"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "devDependencies": {
     "@eslint/js": "^9.5.0",
     "@shopify/prettier-plugin-liquid": "^1.5.0",

@@ -24,6 +24,12 @@
     "eject": "react-scripts eject",
     "copy-build": "cp -r build/* ../jekyll/assets/app && cp build/asset-manifest.json ../jekyll/_data/"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
