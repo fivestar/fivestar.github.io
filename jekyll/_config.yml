@@ -1,9 +1,0 @@
-title: fvstr.jp
-description: >-
-  fivestar's personal website
-
-source: .
-destination: ./_site
-plugins:
-  - jekyll_begin_end
-# site settings

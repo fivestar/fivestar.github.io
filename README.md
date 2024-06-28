@@ -1,14 +1,9 @@
 # fvstr.jp
 
-## Development
+## Getting Started
 
-```console
-$ npm install
-$ npm run bundle-install
-$ cd app
-$ npm install
+```bash
+npm run dev
 ```
 
-```console
-$ npm run watch
-```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
