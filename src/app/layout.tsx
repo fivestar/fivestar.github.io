@@ -16,19 +16,19 @@ export const metadata: Metadata = {
   }),
 };
 
-export const ubuntu = Ubuntu({
+const ubuntu = Ubuntu({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
   variable: '--font-ubuntu',
 });
 
-export const notoSansDisplay = Noto_Sans_Display({
+const notoSansDisplay = Noto_Sans_Display({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
   variable: '--font-noto-sans-display',
 });
 
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 export default function RootLayout({
   children,
