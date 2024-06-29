@@ -9,10 +9,6 @@ interface SourceFieldProps {
 }
 
 export function SourceField({ text, placeholder, setText }: SourceFieldProps) {
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value);
-  };
-
   return (
     <div className="kana-control">
       <label className="kana-control__label" htmlFor="kana-source">
@@ -24,7 +20,7 @@ export function SourceField({ text, placeholder, setText }: SourceFieldProps) {
           id="kana-source"
           value={text}
           placeholder={placeholder}
-          onChange={handleChange}
+          onChange={(event) => setText(event.target.value)}
         />
         <button className="btn kana-control__button" onClick={() => setText('')} disabled={!text}>
           Reset

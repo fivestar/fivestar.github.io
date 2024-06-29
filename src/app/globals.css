@@ -249,6 +249,32 @@ textarea {
   display: block;
 }
 
+/* layout/error */
+.error {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  text-align: center;
+
+  .error__status {
+    font-size: 14vh;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.4;
+  }
+  .error__message {
+    margin-bottom: 24px;
+    font-size: 3vh;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.4;
+  }
+  .error__description {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-normal);
+  }
+  .error__action {
+    margin-top: 40px;
+  }
+}
+
 /* components/avatar */
 .avatar {
   height: auto;

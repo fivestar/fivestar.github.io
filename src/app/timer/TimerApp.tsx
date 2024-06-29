@@ -101,12 +101,15 @@ export default function TimerApp() {
   };
 
   const playGong = () => {
-    if (audioBufferRef.current && audioContextRef.current) {
-      const source = audioContextRef.current.createBufferSource();
-      source.buffer = audioBufferRef.current;
-      source.connect(audioContextRef.current.destination);
-      source.start(0);
+    if (!audioBufferRef.current || !audioContextRef.current) {
+      console.error('Audio data not ready');
+      return;
     }
+
+    const source = audioContextRef.current.createBufferSource();
+    source.buffer = audioBufferRef.current;
+    source.connect(audioContextRef.current.destination);
+    source.start(0);
   };
 
   const controlDisabled = !isValidTimeString(timer.startTime);
