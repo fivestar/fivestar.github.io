@@ -8,7 +8,6 @@ const config = {
   tabWidth: 2,
   semi: true,
   singleQuote: true,
-  plugins: ['@shopify/prettier-plugin-liquid'],
 };
 
 export default config;

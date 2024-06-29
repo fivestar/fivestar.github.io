@@ -1,28 +1,28 @@
 {
-  "name": "fivestar.github.io",
+  "name": "app",
   "version": "0.3.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run serve:jekyll\" \"npm run start:react\"",
-    "serve:jekyll": "cd jekyll && bundle exec jekyll serve --livereload",
-    "start:react": "cd app && npm start",
-    "build:react": "cd app && npm run build && npm run copy-build",
-    "copy-build": "cp -r app/build/* jekyll/assets/app && cp app/build/asset-manifest.json jekyll/_data/",
-    "watch": "concurrently --kill-others-on-fail \"npm run watch-react\" \"npm run serve:jekyll\"",
-    "watch-react": "cd app && watch 'npm run build && npm run copy-build' ./src",
-    "fmt": "prettier --write .",
-    "lint": "eslint .",
-    "bundle-install": "cd jekyll && bundle install"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/third-parties": "^14.2.4",
+    "next": "^14.2.4",
+    "prettier": "^3.3.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "sanitize.css": "^13.0.0",
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
-    "@shopify/prettier-plugin-liquid": "^1.5.0",
-    "concurrently": "^8.2.2",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.3",
-    "globals": "^15.6.0",
-    "prettier": "^3.3.2",
-    "typescript-eslint": "^7.13.1",
-    "watch": "^1.0.2"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "typescript": "^5"
   }
 }

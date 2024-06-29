@@ -3,11 +3,7 @@
 **/yarn.lock
 **/package.json
 
-app/build
-
-jekyll/_site
-jekyll/_includes/bodytags.html
-jekyll/_includes/headtags.html
-**/vendor
+src/p2js
 
 .github
+.next
