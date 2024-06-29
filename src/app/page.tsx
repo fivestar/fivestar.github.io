@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import avatarRacingPic from '../../public/assets/img/avatars/racing.jpg';
-import avatarPhpconPic from '../../public/assets/img/avatars/phpcon.png';
-import avatarGirlPic from '../../public/assets/img/avatars/girl.png';
-import bookcoverPerfectPic from '../../public/assets/img/bookcovers/perfect.jpg';
-import bookcoverWebappPic from '../../public/assets/img/bookcovers/webapp.png';
+import avatarRacingPic from '@@/assets/img/avatars/racing.jpg';
+import avatarPhpconPic from '@@/assets/img/avatars/phpcon.png';
+import avatarGirlPic from '@@/assets/img/avatars/girl.png';
+import bookcoverPerfectPic from '@@/assets/img/bookcovers/perfect.jpg';
+import bookcoverWebappPic from '@@/assets/img/bookcovers/webapp.png';
 
 export default function Home() {
   return (

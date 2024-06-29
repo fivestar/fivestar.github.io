@@ -5,8 +5,8 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import { Ubuntu, Noto_Sans_Display } from 'next/font/google';
 import 'sanitize.css';
 import './globals.css';
-import iconPic from '../../public/assets/img/icon.png';
-import githubMarkPic from '../../public/assets/github-mark/github-mark.png';
+import iconPic from '@@/assets/img/icon.png';
+import githubMarkPic from '@@/assets/github-mark/github-mark.png';
 import { titleAndDescription } from './shared-metadata';
 
 export const metadata: Metadata = {
