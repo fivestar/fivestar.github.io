@@ -6,6 +6,7 @@ import { Ubuntu, Noto_Sans_Display } from 'next/font/google';
 import 'sanitize.css';
 import './globals.css';
 import iconPic from '../../public/assets/img/icon.png';
+import githubMarkPic from '../../public/assets/github-mark/github-mark.png';
 import { titleAndDescription } from './shared-metadata';
 
 export const metadata: Metadata = {
@@ -54,7 +55,16 @@ export default function RootLayout({
 
           <footer className="footer">
             <div className="container">
-              <small className="footer__copyright">&copy; 2024 Katsuhiro Ogawa</small>
+              <small className="footer__text">&copy; 2024 Katsuhiro Ogawa</small>
+              <small className="footer__text">
+                <a
+                  href="https://github.com/fivestar/fivestar.github.io"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Image src={githubMarkPic} alt="Get the repository" />
+                </a>
+              </small>
             </div>
           </footer>
         </div>
