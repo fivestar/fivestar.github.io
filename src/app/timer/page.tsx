@@ -6,7 +6,7 @@ import TimerApp from './TimerApp';
 
 export const metadata: Metadata = {
   ...titleAndDescription({
-    title: 'Timer | fvstr.jp',
+    title: 'Timer - fvstr.jp',
     description: 'Simple Countdown Timer',
   }),
 };

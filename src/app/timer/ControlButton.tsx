@@ -4,14 +4,20 @@ import React from 'react';
 
 interface ControlButtonProps {
   text: string;
-  disabled: boolean;
+  primary?: boolean;
+  disabled?: boolean;
   onClick: () => void;
 }
 
-export function ControlButton({ text, disabled, onClick }: ControlButtonProps) {
+export function ControlButton({
+  text,
+  primary = false,
+  disabled = false,
+  onClick,
+}: ControlButtonProps) {
   return (
     <button
-      className="btn timer-control timer-control--button"
+      className={`btn ${primary ? 'btn--primary' : ''} timer-control timer-control--button`}
       onClick={() => onClick()}
       disabled={disabled}
     >

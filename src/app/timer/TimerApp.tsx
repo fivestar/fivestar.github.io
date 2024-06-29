@@ -117,11 +117,32 @@ export default function TimerApp() {
   const renderTriggerButton = () => {
     switch (timer.state) {
       case 'STARTED':
-        return <ControlButton text="Pause" disabled={controlDisabled} onClick={handlePause} />;
+        return (
+          <ControlButton
+            text="Pause"
+            primary={true}
+            disabled={controlDisabled}
+            onClick={handlePause}
+          />
+        );
       case 'PAUSED':
-        return <ControlButton text="Resume" disabled={controlDisabled} onClick={handleResume} />;
+        return (
+          <ControlButton
+            text="Resume"
+            primary={true}
+            disabled={controlDisabled}
+            onClick={handleResume}
+          />
+        );
       default:
-        return <ControlButton text="Start" disabled={controlDisabled} onClick={handleStart} />;
+        return (
+          <ControlButton
+            text="Start"
+            primary={true}
+            disabled={controlDisabled}
+            onClick={handleStart}
+          />
+        );
     }
   };
 

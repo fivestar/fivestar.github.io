@@ -59,7 +59,11 @@ export function DestField({
           placeholder={convertedPlaceholder}
           readOnly={true}
         />
-        <button className="btn kana-control__button" onClick={handleCopyClick} disabled={!text}>
+        <button
+          className="btn btn--primary kana-control__button"
+          onClick={handleCopyClick}
+          disabled={!text}
+        >
           {buttonLabel}
         </button>
       </div>

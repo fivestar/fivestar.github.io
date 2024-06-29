@@ -6,7 +6,7 @@ import KanaApp from './KanaApp';
 
 export const metadata: Metadata = {
   ...titleAndDescription({
-    title: 'Kana | fvstr.jp',
+    title: 'Kana - fvstr.jp',
     description: '日本語の全角/半角、ひらがな/カタカナ変換を簡単に行えるツールです',
   }),
 };
