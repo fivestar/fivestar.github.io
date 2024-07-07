@@ -28,7 +28,7 @@ export default function Home() {
           </dt>
           <dt className="infolist__term">Live in Tokyo</dt>
           <dt className="infolist__term">
-            Avatars ... &nbsp;
+            Avatars ...&nbsp;
             <Image className="avatar" src={avatarRacingPic} alt="Racing" />
             &nbsp;
             <Image className="avatar" src={avatarPhpconPic} alt="PHPcon" />
@@ -182,7 +182,7 @@ export default function Home() {
                 Published at <time dateTime="2010-11-12">November 12, 2010</time>
               </dd>
               <dd className="infolist__detail">
-                Talked at &nbsp;
+                Talked at&nbsp;
                 <a
                   href="https://www.slideshare.net/fivestar/php-5288493"
                   target="_blank"
@@ -190,7 +190,7 @@ export default function Home() {
                 >
                   #phpcon2010
                 </a>
-                , &nbsp;
+                ,&nbsp;
                 <a
                   href="https://speakerdeck.com/fivestar/the-new-perfect-php-will-be-coming-soon"
                   target="_blank"
@@ -228,7 +228,7 @@ export default function Home() {
                 Published at <time dateTime="2012-05-26">May 26, 2012</time>
               </dd>
               <dd className="infolist__detail">
-                Talked at &nbsp;
+                Talked at&nbsp;
                 <a
                   href="https://speakerdeck.com/fivestar/xiao-lu-de-nawebapurikesiyonfalsezuo-rifang"
                   target="_blank"

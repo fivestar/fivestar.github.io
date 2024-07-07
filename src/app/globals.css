@@ -3,7 +3,7 @@
   --black: #310;
   --gray: #544;
 
-  --primary: #ff7736;
+  --primary: darkorange;
   --primary-darkest: #3e1400;
   --primary-lightest: #fff1eb;
 
@@ -119,6 +119,7 @@ body {
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height);
   color: var(--gray);
+  background-color: var(--white);
 }
 
 a {
