@@ -3,15 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useInterval } from 'usehooks-ts';
 import { TimeField } from './TimeField';
-import { ControlButton } from './ControlButton';
+import { TimerState } from './TimerState';
+import { StartButton, ResetButton, GongButton } from './Button';
 import { TimerDisplay } from './TimerDisplay';
 import { toSeconds, isValidTimeString } from './utils';
-
-type TimerState = {
-  state: 'STOPPED' | 'STARTED' | 'PAUSED';
-  startTime: string;
-  secondsRemaining: number;
-};
 
 export default function TimerApp() {
   const [timer, setTimer] = useState<TimerState>({
@@ -112,47 +107,21 @@ export default function TimerApp() {
     source.start(0);
   };
 
-  const controlDisabled = !isValidTimeString(timer.startTime);
-
-  const renderTriggerButton = () => {
-    switch (timer.state) {
-      case 'STARTED':
-        return (
-          <ControlButton
-            text="Pause"
-            primary={true}
-            disabled={controlDisabled}
-            onClick={handlePause}
-          />
-        );
-      case 'PAUSED':
-        return (
-          <ControlButton
-            text="Resume"
-            primary={true}
-            disabled={controlDisabled}
-            onClick={handleResume}
-          />
-        );
-      default:
-        return (
-          <ControlButton
-            text="Start"
-            primary={true}
-            disabled={controlDisabled}
-            onClick={handleStart}
-          />
-        );
-    }
-  };
+  const startTimeInvalid = !isValidTimeString(timer.startTime);
 
   return (
     <>
       <div className="timer-controls">
         <TimeField value={timer.startTime} onInput={handleInput} />
-        {renderTriggerButton()}
-        <ControlButton text="Reset" disabled={controlDisabled} onClick={handleReset} />
-        <ControlButton text="Gong" disabled={controlDisabled} onClick={playGong} />
+        <StartButton
+          timerState={timer.state}
+          disabled={startTimeInvalid}
+          onStart={handleStart}
+          onPause={handlePause}
+          onResume={handleResume}
+        />
+        <ResetButton disabled={startTimeInvalid} onReset={handleReset} />
+        <GongButton disabled={startTimeInvalid} onGong={playGong} />
       </div>
 
       <TimerDisplay seconds={timer.secondsRemaining} />

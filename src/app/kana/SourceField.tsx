@@ -1,6 +1,4 @@
-'use client';
-
-import React, { Dispatch, SetStateAction, ChangeEvent } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 interface SourceFieldProps {
   text: string;
