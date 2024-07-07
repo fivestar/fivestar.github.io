@@ -15,7 +15,7 @@ export default function Home() {
 
       <section id="about" className="content">
         <dl className="infolist">
-          <dt className="infolist__term">Katsuhiro Ogawa / 小川 雄大🇯🇵</dt>
+          <dt className="infolist__term">Katsuhiro Ogawa / 小川 雄大 🇯🇵</dt>
           <dd className="infolist__detail">
             a.k.a. <a href="https://github.com/fivestar">fivestar</a>
           </dd>
@@ -28,9 +28,11 @@ export default function Home() {
           </dt>
           <dt className="infolist__term">Live in Tokyo</dt>
           <dt className="infolist__term">
-            Avatars ...
+            Avatars ... &nbsp;
             <Image className="avatar" src={avatarRacingPic} alt="Racing" />
+            &nbsp;
             <Image className="avatar" src={avatarPhpconPic} alt="PHPcon" />
+            &nbsp;
             <Image className="avatar" src={avatarGirlPic} alt="Umbrella Girl" />
           </dt>
         </dl>
