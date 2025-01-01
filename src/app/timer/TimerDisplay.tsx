@@ -25,7 +25,7 @@ export function TimerDisplay({ state, secondsRemaining, secondsAtStart }: TimerS
         className="timer-display__progress"
         value={secondsAtStart - secondsRemaining}
         max={secondsAtStart}
-        hidden={state != 'STARTED'}
+        hidden={state == 'STOPPED'}
       ></progress>
       <div className="timer-display__time">{toTimeString(secondsRemaining)}</div>
     </div>
