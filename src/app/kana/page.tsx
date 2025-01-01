@@ -24,7 +24,7 @@ export default function KanaPage() {
                 Kana
               </Link>
             </h2>
-            <p className="content-header__description">Easy Japanese text transforms</p>
+            <p className="content-header__description">Easy Japanese kana/width transforms</p>
           </div>
         </div>
       </SiteHeader>

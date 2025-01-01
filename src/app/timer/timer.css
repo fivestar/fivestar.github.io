@@ -11,16 +11,16 @@
     display: inline-block;
 
     .timer-control__input {
-      width: 80px;
+      width: 72px;
     }
 
     .time-picker {
-      width: 80px;
+      width: 72px;
     }
   }
 
   &.timer-control--button {
-    min-width: 80px;
+    min-width: 72px;
   }
 }
 
@@ -146,7 +146,7 @@
   .timer-display__time {
     font-family: var(--font-noto-sans-display), sans-serif;
     font-weight: var(--font-weight-semi-bold);
-    font-size: calc(20vw + 10vh);
+    font-size: calc(20vw + 9vh);
     text-align: center;
     white-space: nowrap;
     overflow: hidden;

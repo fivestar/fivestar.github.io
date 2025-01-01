@@ -25,34 +25,68 @@ function Home() {
   return (
     <article className="content">
       <Section title="About">
-        <ul className="infolist">
+        <ul className="infolist" itemScope itemType="https://schema.org/Person">
           <li className="infolist_item">
-            <div className="infolist__title">Katsuhiro Ogawa / 小川 雄大 🇯🇵</div>
+            <div className="infolist__title" data-keyinfo={true}>
+              <span itemProp="name">
+                <span lang="en">Katsuhiro Ogawa</span> (
+                <span itemProp="familyName" lang="ja">
+                  小川
+                </span>{' '}
+                <span itemProp="givenName" lang="ja">
+                  雄大
+                </span>
+                )
+              </span>{' '}
+              <span itemProp="nationality">
+                <span aria-hidden={true}>🇯🇵</span>
+                <span className="visually-hidden">Japan</span>
+              </span>
+            </div>
             <div className="infolist__description">
-              a.k.a. <a href="https://github.com/fivestar">fivestar</a>
+              <a href="https://github.com/fivestar" itemProp="identifier">
+                @<span itemProp="alternateName">fivestar</span>
+              </a>{' '}
+              <Image className="avatar" src={avatarRacingPic} alt="Racing Icon" itemProp="image" />{' '}
+              <Image className="avatar" src={avatarPhpconPic} alt="PHPcon Icon" itemProp="image" />{' '}
+              <Image
+                className="avatar"
+                src={avatarGirlPic}
+                alt="Umbrella Girl Icon"
+                itemProp="image"
+              />
             </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              Principal Engineer at <a href="https://about.mercari.com/">Mercari Inc.</a>
+            <div className="infolist__description">
+              <span itemProp="jobTitle">Principal Engineer</span> at{' '}
+              <span itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
+                <a
+                  href="https://about.mercari.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  itemProp="url"
+                >
+                  <span itemProp="name">Mercari Inc.</span>
+                </a>
+              </span>
             </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">Technical Book Writing, Engineering Advising</div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              Born on <time dateTime="1987-06-18">June 18, 1987</time> in Kawaguchi, Saitama
+            <div className="infolist__description">
+              <span itemProp="description">Technical Book Writing, Engineering Advising</span>
             </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">Live in Tokyo</div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              Avatars ... <Image className="avatar" src={avatarRacingPic} alt="Racing" />{' '}
-              <Image className="avatar" src={avatarPhpconPic} alt="PHPcon" />{' '}
-              <Image className="avatar" src={avatarGirlPic} alt="Umbrella Girl" />
+            <div className="infolist__description">
+              Born on{' '}
+              <time dateTime="1987-06-18" itemProp="birthDate">
+                June 18, 1987
+              </time>{' '}
+              in{' '}
+              <span itemProp="birthPlace" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name">Kawaguchi, Saitama</span>
+              </span>
+            </div>
+            <div className="infolist__description">
+              Live in{' '}
+              <span itemProp="homeLocation" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name">Tokyo</span>
+              </span>
             </div>
           </li>
         </ul>
@@ -188,7 +222,12 @@ function Home() {
       </Section>
 
       <Section title="Books">
-        <div className="media" itemScope itemType="https://schema.org/Book">
+        <div
+          className="media"
+          itemScope
+          itemType="https://schema.org/Book"
+          itemID="urn:isbn:978-4-7741-4437-5"
+        >
           <div className="media__thumbnail">
             <a
               href="https://www.amazon.co.jp/dp/4774144371/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=ba8bf8a2f8a9334a85b7d3ac4acfaaba&amp;camp=247&amp;creative=1211"
@@ -256,7 +295,12 @@ function Home() {
           </div>
         </div>
 
-        <div className="media" itemScope itemType="https://schema.org/Book">
+        <div
+          className="media"
+          itemScope
+          itemType="https://schema.org/Book"
+          itemID="urn:isbn:978-4-7741-5082-6"
+        >
           <div className="media__thumbnail">
             <a
               href="https://www.amazon.co.jp/dp/4774150827/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=9742996e114614ba537f97011c4515f1&amp;camp=247&amp;creative=1211"

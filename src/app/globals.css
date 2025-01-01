@@ -80,7 +80,7 @@
   :root {
     --container-spacing-lr: 16px;
 
-    --font-size-small: 14px;
+    --font-size-small: 16px;
     --font-size-regular: 18px;
     --font-size-large: 24px;
 
@@ -224,6 +224,10 @@ textarea {
     display: flex;
     flex-wrap: nowrap;
 
+    &[data-brand-only='true'] {
+      margin-bottom: 8px;
+    }
+
     .content-header {
       &::after {
         left: -22px;
@@ -335,7 +339,7 @@ textarea {
 }
 
 .content-section {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .content-header {
@@ -362,7 +366,8 @@ textarea {
 
     &::before {
       content: '- ';
-      color: var(--gray-400);
+      margin-right: 1px;
+      color: var(--gray-300);
     }
   }
 
@@ -485,16 +490,22 @@ textarea {
   padding: 0;
   list-style-type: none;
 
+  [data-keyinfo='true'] {
+    margin-bottom: 2px;
+    font-weight: var(--font-weight-medium);
+  }
+
   .infolist__description {
     margin-bottom: 8px;
 
     &::before {
       content: '- ';
-      color: var(--gray-400);
+      margin-right: 1px;
+      color: var(--gray-300);
     }
 
     & + & {
-      margin-top: -8px;
+      margin-top: -7px;
     }
   }
 }
