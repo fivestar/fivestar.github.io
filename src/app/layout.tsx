@@ -40,22 +40,11 @@ export default function RootLayout({
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body className={`${ubuntu.variable} ${notoSansDisplay.variable}`}>
         <div className="layout">
-          <div className="logo">
-            <h1 className="logo__content">
-              <Link href="/" className="logo__link">
-                <Image className="logo__icon" src={iconPic} alt="f" />
-                &nbsp;fvstr<span className="logo__link-dot">.</span>jp
-              </Link>
-            </h1>
-          </div>
+          {children}
 
-          <main className="main">
-            <div className="container">{children}</div>
-          </main>
-
-          <footer className="footer">
+          <footer className="site-footer">
             <div className="container">
-              <small className="footer__text">&copy; 2024 Katsuhiro Ogawa</small>
+              <small className="footer__text">&copy; 2025 Katsuhiro Ogawa</small>
               <small className="footer__text">
                 <a
                   href="https://github.com/fivestar/fivestar.github.io"
@@ -70,5 +59,23 @@ export default function RootLayout({
         </div>
       </body>
     </html>
+  );
+}
+
+export function SiteHeader({
+  children,
+}: Readonly<{
+  children?: React.ReactNode;
+}>) {
+  return (
+    <header className="site-header" data-brand-only={!children}>
+      <h1 className="brand">
+        <Link href="/" className="brand__link">
+          <Image className="brand__icon" src={iconPic} alt="" /> fvstr
+          <span className="brand__dot">.</span>jp
+        </Link>
+      </h1>
+      {children}
+    </header>
   );
 }

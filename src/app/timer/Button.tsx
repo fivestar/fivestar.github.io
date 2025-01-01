@@ -3,14 +3,16 @@ import { TimerStateType } from './TimerState';
 
 interface ControlButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
+  variant?: 'primary' | '';
   primary?: boolean;
   onClick: () => void;
 }
 
-function ControlButton({ text, primary = false, disabled = false, onClick }: ControlButtonProps) {
+function ControlButton({ text, variant = '', disabled = false, onClick }: ControlButtonProps) {
   return (
     <button
-      className={`btn ${primary ? 'btn--primary' : ''} timer-control timer-control--button`}
+      className={`btn timer-control timer-control--button`}
+      data-variant={variant}
       onClick={() => onClick()}
       disabled={disabled}
     >
@@ -35,11 +37,13 @@ export function StartButton({
 }: TriggerButtonProps) {
   switch (timerState) {
     case 'STARTED':
-      return <ControlButton text="Pause" primary={true} disabled={disabled} onClick={onPause} />;
+      return <ControlButton text="Pause" variant="primary" disabled={disabled} onClick={onPause} />;
     case 'PAUSED':
-      return <ControlButton text="Resume" primary={true} disabled={disabled} onClick={onResume} />;
+      return (
+        <ControlButton text="Resume" variant="primary" disabled={disabled} onClick={onResume} />
+      );
     default:
-      return <ControlButton text="Start" primary={true} disabled={disabled} onClick={onStart} />;
+      return <ControlButton text="Start" variant="primary" disabled={disabled} onClick={onStart} />;
   }
 }
 

@@ -12,16 +12,29 @@ const timeChoices = ['1:00', '3:00', '5:00', '10:00', '15:00', '20:00', '30:00']
 
 export function TimeField({ value, onInput }: TimeFieldProps) {
   const [showTimePicker, setShowTimePicker] = useState(false);
+  const [focusedKey, setFocusedKey] = useState(-1);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const pickerRef = useRef<HTMLInputElement | null>(null);
+  const pickerRef = useRef<HTMLUListElement | null>(null);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onInput(event.target.value);
+
+    let found = false;
+    timeChoices.map((v, k) => {
+      if (event.target.value === v) {
+        setFocusedKey(k);
+        found = true;
+      }
+    });
+    if (!found) {
+      setFocusedKey(-1);
+    }
   };
 
-  const handleTimePick = (time: string) => {
+  const handleTimePick = (time: string, key: number) => {
     onInput(time);
     setShowTimePicker(false);
+    setFocusedKey(key);
   };
 
   const handleFocus = () => {
@@ -35,14 +48,61 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
     setShowTimePicker(true);
   };
 
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const nextFocus = e.relatedTarget;
+    if (!pickerRef.current?.contains(nextFocus)) {
+      setShowTimePicker(false);
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape') {
+      setShowTimePicker(false);
+      inputRef.current?.focus();
+      return;
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      focusNextOption();
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      focusPreviousOption();
+    }
+
+    if (e.key === 'Enter') {
+      pickFocusedOption();
+    }
+  };
+
+  const focusNextOption = () => {
+    if (focusedKey === -1 || focusedKey === timeChoices.length - 1) {
+      setFocusedKey(0);
+    } else {
+      setFocusedKey(focusedKey + 1);
+    }
+  };
+
+  const focusPreviousOption = () => {
+    if (focusedKey === -1 || focusedKey === 0) {
+      setFocusedKey(timeChoices.length - 1);
+    } else {
+      setFocusedKey(focusedKey - 1);
+    }
+  };
+
+  const pickFocusedOption = () => {
+    if (focusedKey === -1) {
+      return;
+    }
+    handleTimePick(timeChoices[focusedKey], focusedKey);
+  };
+
   // eslint-disable-next-line
   const handleDocumentClick = (event: any) => {
-    if (
-      pickerRef.current &&
-      !pickerRef.current.contains(event.target) &&
-      inputRef.current &&
-      !inputRef.current.contains(event.target)
-    ) {
+    if (!pickerRef.current?.contains(event.target) && !inputRef.current?.contains(event.target)) {
       setShowTimePicker(false);
     }
   };
@@ -56,24 +116,44 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
 
   return (
     <div className="timer-control timer-control--time">
+      <label htmlFor="timer-input" className="timer-control__label">
+        <span aria-hidden="true">⏱️</span>
+        <span className="visually-hidden">Timer input</span>
+      </label>{' '}
       <input
         type="text"
-        className={'input-field' + (!isValidTimeString(value) ? ' input-field--error' : '')}
+        className={'input-field timer-control__input'}
+        id="timer-input"
         ref={inputRef}
         value={value}
+        aria-haspopup={true}
+        aria-controls="time-picker"
+        aria-invalid={!isValidTimeString(value)}
         onChange={handleChange}
         onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
       />
-      <div
-        className={'time-picker' + (showTimePicker ? ' time-picker--active' : '')}
+      <ul
+        className="time-picker"
+        id="time-picker"
         ref={pickerRef}
+        role="listbox"
+        hidden={!showTimePicker}
       >
         {timeChoices.map((tm, index) => (
-          <button key={index} className="time-picker__item" onClick={() => handleTimePick(tm)}>
+          <li
+            key={index}
+            className="time-picker__item"
+            role="option"
+            tabIndex={-1}
+            aria-selected={index === focusedKey}
+            onClick={() => handleTimePick(tm, index)}
+          >
             {tm}
-          </button>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

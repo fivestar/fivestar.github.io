@@ -1,6 +1,7 @@
 export type TimerState = {
   state: TimerStateType;
   startTime: string;
+  secondsAtStart: number;
   secondsRemaining: number;
 };
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { SiteHeader } from '../layout';
 import './kana.css';
 import { titleAndDescription } from '../shared-metadata';
 import KanaApp from './KanaApp';
@@ -14,14 +16,26 @@ export const metadata: Metadata = {
 export default function KanaPage() {
   return (
     <>
-      <header className="header">
-        <h1 className="header__headline">Kana</h1>
-        <p className="header__subheadline">transform Japanese script</p>
-      </header>
+      <SiteHeader>
+        <div className="container">
+          <div className="content-header">
+            <h2 className="content-header__title">
+              <Link href="/kana" className="content-header__link">
+                Kana
+              </Link>
+            </h2>
+            <p className="content-header__description">Easy Japanese text transforms</p>
+          </div>
+        </div>
+      </SiteHeader>
 
-      <article className="content">
-        <KanaApp />
-      </article>
+      <main className="main">
+        <div className="container">
+          <article className="content">
+            <KanaApp />
+          </article>
+        </div>
+      </main>
     </>
   );
 }

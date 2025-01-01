@@ -28,14 +28,16 @@ export default function KanaApp() {
 
   return (
     <>
-      <div className="kana-form kana-form--source">
+      <div className="kana-form" data-form-type="in">
         <fieldset>
+          <legend>Input Field</legend>
           <SourceField text={text} placeholder={placeholder} setText={setText} />
         </fieldset>
       </div>
 
-      <div className="kana-form kana-form--dest">
+      <div className="kana-form" data-form-type="out">
         <fieldset>
+          <legend>Output Fields</legend>
           {converters.map((conv, index) => (
             <DestField
               key={index}
