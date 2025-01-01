@@ -12,6 +12,7 @@ export default function TimerApp() {
   const [timer, setTimer] = useState<TimerState>({
     state: 'STOPPED',
     startTime: '5:00',
+    secondsAtStart: 5 * 60,
     secondsRemaining: 5 * 60,
   });
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -55,10 +56,13 @@ export default function TimerApp() {
 
   const handleStart = () => {
     try {
+      const sec = toSeconds(timer.startTime);
+
       setTimer({
         ...timer,
         state: 'STARTED',
-        secondsRemaining: toSeconds(timer.startTime),
+        secondsAtStart: sec,
+        secondsRemaining: sec,
       });
     } catch (e: unknown) {
       if (e instanceof Error) {
@@ -83,10 +87,13 @@ export default function TimerApp() {
 
   const handleReset = () => {
     try {
+      const sec = toSeconds(timer.startTime);
+
       setTimer({
         ...timer,
         state: 'STOPPED',
-        secondsRemaining: toSeconds(timer.startTime),
+        secondsAtStart: sec,
+        secondsRemaining: sec,
       });
     } catch (e) {
       if (e instanceof Error) {
@@ -124,7 +131,7 @@ export default function TimerApp() {
         <GongButton disabled={startTimeInvalid} onGong={playGong} />
       </div>
 
-      <TimerDisplay seconds={timer.secondsRemaining} />
+      <TimerDisplay {...timer} />
     </>
   );
 }

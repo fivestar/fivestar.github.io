@@ -58,9 +58,12 @@ export function DestField({
           value={convertedText}
           placeholder={convertedPlaceholder}
           readOnly={true}
+          aria-readonly={true}
         />
         <button
-          className="btn btn--primary kana-control__button"
+          type="button"
+          className="btn kana-control__button"
+          data-variant="primary"
           onClick={handleCopyClick}
           disabled={!text}
         >

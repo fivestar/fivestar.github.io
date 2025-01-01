@@ -1,5 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { SiteHeader } from '../layout';
 import './timer.css';
 import { titleAndDescription } from '../shared-metadata';
 import TimerApp from './TimerApp';
@@ -7,21 +9,33 @@ import TimerApp from './TimerApp';
 export const metadata: Metadata = {
   ...titleAndDescription({
     title: 'Timer - fvstr.jp',
-    description: 'Simple Countdown Timer',
+    description: 'Countdown for talks',
   }),
 };
 
 export default function TimerPage() {
   return (
     <>
-      <header className="header">
-        <h1 className="header__headline">Timer</h1>
-        <p className="header__subheadline">simple countdown timer</p>
-      </header>
+      <SiteHeader>
+        <div className="container">
+          <div className="content-header">
+            <h2 className="content-header__title">
+              <Link href="/timer" className="content-header__link">
+                Timer
+              </Link>
+            </h2>
+            <p className="content-header__description">Countdown for talks</p>
+          </div>
+        </div>
+      </SiteHeader>
 
-      <article className="content">
-        <TimerApp />
-      </article>
+      <main className="main">
+        <div className="container">
+          <article className="content">
+            <TimerApp />
+          </article>
+        </div>
+      </main>
     </>
   );
 }

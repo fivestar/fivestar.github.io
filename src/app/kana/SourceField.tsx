@@ -10,7 +10,7 @@ export function SourceField({ text, placeholder, setText }: SourceFieldProps) {
   return (
     <div className="kana-control">
       <label className="kana-control__label" htmlFor="kana-source">
-        Input
+        Enter Your Text &gt;
       </label>
       <div className="kana-control__area">
         <textarea
