@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ChangeEvent, useState, useEffect, useRef } from 'react';
+import React, { ChangeEvent, FocusEvent, KeyboardEvent, useState, useEffect, useRef } from 'react';
 import { isValidTimeString } from './utils';
 
 interface TimeFieldProps {
