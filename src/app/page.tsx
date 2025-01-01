@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { SiteHeader } from './layout';
+import { SiteHeader } from './SiteHeader';
 import avatarRacingPic from '@@/assets/img/avatars/racing.jpg';
 import avatarPhpconPic from '@@/assets/img/avatars/phpcon.png';
 import avatarGirlPic from '@@/assets/img/avatars/girl.png';

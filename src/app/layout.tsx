@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { Ubuntu, Noto_Sans_Display } from 'next/font/google';
 import 'sanitize.css';
 import './globals.css';
-import iconPic from '@@/assets/img/icon.png';
 import githubMarkPic from '@@/assets/github-mark/github-mark.png';
 import { titleAndDescription } from './shared-metadata';
 
@@ -59,23 +57,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
-}
-
-export function SiteHeader({
-  children,
-}: Readonly<{
-  children?: React.ReactNode;
-}>) {
-  return (
-    <header className="site-header" data-brand-only={!children}>
-      <h1 className="brand">
-        <Link href="/" className="brand__link">
-          <Image className="brand__icon" src={iconPic} alt="" /> fvstr
-          <span className="brand__dot">.</span>jp
-        </Link>
-      </h1>
-      {children}
-    </header>
   );
 }
