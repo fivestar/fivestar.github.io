@@ -44,7 +44,12 @@ function Home() {
               </span>
             </div>
             <div className="infolist__description">
-              <a href="https://github.com/fivestar" itemProp="identifier">
+              <a
+                href="https://github.com/fivestar"
+                itemProp="identifier"
+                target="_blank"
+                rel="noreferrer"
+              >
                 @<span itemProp="alternateName">fivestar</span>
               </a>{' '}
               <Image className="avatar" src={avatarRacingPic} alt="Racing Icon" itemProp="image" />{' '}
@@ -229,11 +234,7 @@ function Home() {
           itemID="urn:isbn:978-4-7741-4437-5"
         >
           <div className="media__thumbnail">
-            <a
-              href="https://www.amazon.co.jp/dp/4774144371/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=ba8bf8a2f8a9334a85b7d3ac4acfaaba&amp;camp=247&amp;creative=1211"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://gihyo.jp/book/2010/978-4-7741-4437-5" target="_blank" rel="noreferrer">
               <Image src={bookcoverPerfectPic} alt="Cover of パーフェクトPHP" itemProp="image" />
             </a>
           </div>
@@ -242,9 +243,10 @@ function Home() {
               <li className="infolist_item">
                 <div className="infolist__title">
                   <a
-                    href="https://www.amazon.co.jp/dp/4774144371/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=ba8bf8a2f8a9334a85b7d3ac4acfaaba&amp;camp=247&amp;creative=1211"
+                    href="https://gihyo.jp/book/2010/978-4-7741-4437-5"
                     target="_blank"
                     rel="noreferrer"
+                    itemProp="url"
                   >
                     <span itemProp="name">パーフェクトPHP</span>
                   </a>
@@ -252,7 +254,7 @@ function Home() {
                 <div className="infolist__description">
                   Published at{' '}
                   <time dateTime="2010-11-12" itemProp="datePublished">
-                    November 12, 2010
+                    Nov. 12, 2010
                   </time>
                 </div>
                 <div className="infolist__description">
@@ -271,24 +273,19 @@ function Home() {
                       #phpcon2010
                     </a>
                   </span>
-                  ,{' '}
-                  <span
-                    itemProp="subjectOf"
-                    itemScope
-                    itemType="https://schema.org/PresentationDigitalDocument"
-                  >
-                    <a
-                      href="https://speakerdeck.com/fivestar/the-new-perfect-php-will-be-coming-soon"
-                      target="_blank"
-                      rel="noreferrer"
-                      itemProp="url"
-                    >
-                      #phpcon2015
-                    </a>
-                  </span>
                 </div>
                 <div className="infolist__description">
                   ISBN: <span itemProp="isbn">978-4-7741-4437-5</span>
+                </div>
+                <div className="infolist__description">
+                  <a
+                    href="https://www.amazon.co.jp/dp/4774144371/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=ba8bf8a2f8a9334a85b7d3ac4acfaaba&amp;camp=247&amp;creative=1211"
+                    target="_blank"
+                    rel="noreferrer"
+                    itemProp="url"
+                  >
+                    Amazon
+                  </a>
                 </div>
               </li>
             </ul>
@@ -302,11 +299,7 @@ function Home() {
           itemID="urn:isbn:978-4-7741-5082-6"
         >
           <div className="media__thumbnail">
-            <a
-              href="https://www.amazon.co.jp/dp/4774150827/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=9742996e114614ba537f97011c4515f1&amp;camp=247&amp;creative=1211"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://gihyo.jp/book/2012/978-4-7741-5082-6" target="_blank" rel="noreferrer">
               <Image
                 src={bookcoverWebappPic}
                 alt="Cover of 効率的なWebアプリケーションの作り方"
@@ -319,9 +312,10 @@ function Home() {
               <li className="infolist_item">
                 <div className="infolist__title">
                   <a
-                    href="https://www.amazon.co.jp/dp/4774150827/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=9742996e114614ba537f97011c4515f1&amp;camp=247&amp;creative=1211"
+                    href="https://gihyo.jp/book/2012/978-4-7741-5082-6"
                     target="_blank"
                     rel="noreferrer"
+                    itemProp="url"
                   >
                     <span itemProp="name">効率的なWebアプリケーションの作り方</span>
                   </a>
@@ -353,6 +347,16 @@ function Home() {
                   ISBN: <span itemProp="isbn">978-4-7741-5082-6</span>
                 </div>
                 <div className="infolist__description">
+                  <a
+                    href="https://www.amazon.co.jp/dp/4774150827/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=9742996e114614ba537f97011c4515f1&amp;camp=247&amp;creative=1211"
+                    target="_blank"
+                    rel="noreferrer"
+                    itemProp="url"
+                  >
+                    Amazon
+                  </a>
+                </div>
+                <div className="infolist__description">
                   <span
                     itemProp="hasPart"
                     itemScope
@@ -364,7 +368,7 @@ function Home() {
                       rel="noreferrer"
                       itemProp="codeRepository"
                     >
-                      Rentacar application source code
+                      Application repo
                     </a>
                   </span>
                 </div>
