@@ -67,7 +67,6 @@
 
   @container style(--is-mobile) or style(--is-tablet) {
     .kana-control__input {
-      min-height: 3.5rem;
       padding-right: 64px;
     }
   }
