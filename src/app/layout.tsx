@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { Ubuntu, Noto_Sans_Display } from 'next/font/google';
 
@@ -17,6 +17,10 @@ export const metadata: Metadata = {
     title: 'fvstr.jp',
     description: "fivestar's personal website",
   }),
+};
+
+export const viewport: Viewport = {
+  viewportFit: 'cover',
 };
 
 const ubuntu = Ubuntu({

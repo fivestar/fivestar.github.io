@@ -206,11 +206,9 @@
 .timer-layout[data-fullscreen='true'] {
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,15 +240,15 @@
   }
 
   &[data-rotated='true'] {
-    width: 100vh;
+    width: 100svh;
     height: 100vw;
-    top: calc((100vh - 100vw) / 2);
-    left: calc((100vw - 100vh) / 2);
+    top: calc((100svh - 100vw) / 2);
+    left: calc((100vw - 100svh) / 2);
     transform: rotate(90deg);
 
     .timer-display {
       .timer-display__time {
-        font-size: 36vh;
+        font-size: 36svh;
       }
     }
   }

@@ -316,18 +316,18 @@ textarea {
 
 /* layout/error */
 .error {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-top: 10svh;
+  margin-bottom: 10svh;
   text-align: center;
 
   .error__status {
-    font-size: 14vh;
+    font-size: 14svh;
     font-weight: var(--font-weight-bold);
     line-height: 1.4;
   }
   .error__message {
     margin-bottom: 24px;
-    font-size: 3vh;
+    font-size: 3svh;
     font-weight: var(--font-weight-bold);
     line-height: 1.4;
   }
