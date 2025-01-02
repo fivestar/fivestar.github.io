@@ -1,6 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import mb_convert_kana from '@/p2js/p2js.mb_convert_kana';
 
 interface DestFieldProps {
@@ -22,13 +25,13 @@ export function DestField({
   activeId,
   onCopy,
 }: DestFieldProps) {
-  const [buttonLabel, setButtonLabel] = useState('Copy');
+  const [buttonLabel, setButtonLabel] = useState('');
 
   useEffect(() => {
     if (activeId === id) {
-      setButtonLabel('Copied!');
+      setButtonLabel('Copied');
     } else {
-      setButtonLabel('Copy');
+      setButtonLabel('Copy button');
     }
   }, [activeId, id]);
 
@@ -64,10 +67,17 @@ export function DestField({
           type="button"
           className="btn kana-control__button"
           data-variant="primary"
-          onClick={handleCopyClick}
           disabled={!text}
+          onClick={handleCopyClick}
         >
-          {buttonLabel}
+          <FontAwesomeIcon icon={faCopy} size="sm" />
+          {activeId == id && (
+            <>
+              {' '}
+              <FontAwesomeIcon icon={faCheck} size="sm" />
+            </>
+          )}
+          <span className="visually-hidden">{buttonLabel}</span>
         </button>
       </div>
     </div>

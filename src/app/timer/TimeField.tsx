@@ -1,6 +1,8 @@
 'use client';
 
 import React, { ChangeEvent, FocusEvent, KeyboardEvent, useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import { isValidTimeString } from './utils';
 
 interface TimeFieldProps {
@@ -116,24 +118,26 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
 
   return (
     <div className="timer-control timer-control--time">
-      <label htmlFor="timer-input" className="timer-control__label">
-        <span aria-hidden="true">⏱️</span>
-        <span className="visually-hidden">Timer input</span>
-      </label>{' '}
-      <input
-        type="text"
-        className={'input-field timer-control__input'}
-        id="timer-input"
-        ref={inputRef}
-        value={value}
-        aria-haspopup={true}
-        aria-controls="time-picker"
-        aria-invalid={!isValidTimeString(value)}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
-      />
+      <div className="input-group">
+        <label htmlFor="timer-input" className="timer-control__label input-group__text">
+          <FontAwesomeIcon icon={faStopwatch} size="sm" />
+          <span className="visually-hidden">Timer input</span>
+        </label>{' '}
+        <input
+          type="text"
+          className={'input-field timer-control__input'}
+          id="timer-input"
+          ref={inputRef}
+          value={value}
+          aria-haspopup={true}
+          aria-controls="time-picker"
+          aria-invalid={!isValidTimeString(value)}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
       <ul
         className="time-picker"
         id="time-picker"

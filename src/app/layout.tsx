@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { Ubuntu, Noto_Sans_Display } from 'next/font/google';
+
 import 'sanitize.css';
 import './globals.css';
-import githubMarkPic from '@@/assets/github-mark/github-mark.png';
 import { titleAndDescription } from './shared-metadata';
+import { SiteFooter } from './SiteFooter';
 
 export const metadata: Metadata = {
   ...titleAndDescription({
@@ -39,21 +39,7 @@ export default function RootLayout({
       <body className={`${ubuntu.variable} ${notoSansDisplay.variable}`}>
         <div className="layout">
           {children}
-
-          <footer className="site-footer">
-            <div className="container">
-              <small className="footer__text">&copy; 2025 Katsuhiro Ogawa</small>
-              <small className="footer__text">
-                <a
-                  href="https://github.com/fivestar/fivestar.github.io"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Image src={githubMarkPic} alt="Get the repository" />
-                </a>
-              </small>
-            </div>
-          </footer>
+          <SiteFooter />
         </div>
       </body>
     </html>
