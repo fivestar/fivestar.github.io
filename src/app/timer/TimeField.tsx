@@ -45,8 +45,8 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
     }
 
     const rect = inputRef.current.getBoundingClientRect();
-    pickerRef.current.style.top = rect.bottom + window.scrollY + 'px';
-    pickerRef.current.style.left = rect.left + window.scrollX + 'px';
+    pickerRef.current.style.top = rect.height + 'px';
+    pickerRef.current.style.right = '0';
     setShowTimePicker(true);
   };
 

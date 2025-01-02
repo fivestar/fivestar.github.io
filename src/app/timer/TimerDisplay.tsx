@@ -1,8 +1,21 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 import { toTimeString } from './utils';
 import { TimerState } from './TimerState';
 
-export function TimerDisplay({ state, secondsRemaining, secondsAtStart }: TimerState) {
+type TimerDisplayProps = TimerState & {
+  isFullscreen: boolean;
+  onToggleFullscreen: () => void;
+};
+
+export function TimerDisplay({
+  state,
+  secondsRemaining,
+  secondsAtStart,
+  isFullscreen,
+  onToggleFullscreen,
+}: TimerDisplayProps) {
   const renderVariant = () => {
     if (secondsRemaining <= 0) {
       return 'timeup';
@@ -19,7 +32,7 @@ export function TimerDisplay({ state, secondsRemaining, secondsAtStart }: TimerS
     <div
       className="timer-display"
       data-variant={renderVariant()}
-      aria-label={secondsRemaining + ' remaining...'}
+      aria-label={secondsRemaining + ' seconds remaining...'}
     >
       <progress
         className="timer-display__progress"
@@ -28,6 +41,14 @@ export function TimerDisplay({ state, secondsRemaining, secondsAtStart }: TimerS
         hidden={state == 'STOPPED'}
       ></progress>
       <div className="timer-display__time">{toTimeString(secondsRemaining)}</div>
+      <div className="timer-display__toggle">
+        <button className="btn" data-variant="transparent" onClick={(e) => onToggleFullscreen()}>
+          <FontAwesomeIcon icon={isFullscreen ? faCompress : faExpand} size="lg" />
+          <span className="visually-hidden">
+            {isFullscreen ? 'Compress' : 'Expand '} Fullscreen
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

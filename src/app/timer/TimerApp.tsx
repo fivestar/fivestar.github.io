@@ -8,6 +8,8 @@ import { StartButton, ResetButton, GongButton } from './Button';
 import { TimerDisplay } from './TimerDisplay';
 import { toSeconds, isValidTimeString } from './utils';
 
+const CONTROL_HIDE_SECONDS = 5;
+
 export default function TimerApp() {
   const [timer, setTimer] = useState<TimerState>({
     state: 'STOPPED',
@@ -15,8 +17,34 @@ export default function TimerApp() {
     secondsAtStart: 5 * 60,
     secondsRemaining: 5 * 60,
   });
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
+  const [isControlVisible, setIsControlVisible] = useState(true);
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
+  const controlHideTimer = useRef<NodeJS.Timeout | undefined>(undefined);
+
+  const checkOrientation = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    setIsRotated(height > width);
+  };
+
+  const resetControlHideTimer = () => {
+    clearTimeout(controlHideTimer.current);
+    setIsControlVisible(true);
+
+    if (isFullscreen && timer.state == 'STARTED') {
+      controlHideTimer.current = setTimeout(
+        () => setIsControlVisible(false),
+        CONTROL_HIDE_SECONDS * 1000
+      );
+    }
+  };
+
+  const handleInteraction = () => {
+    resetControlHideTimer();
+  };
 
   useEffect(() => {
     audioContextRef.current = new AudioContext();
@@ -27,6 +55,16 @@ export default function TimerApp() {
         audioBufferRef.current = audioBuffer || null;
       })
       .catch((err) => console.error('Error loading audio file', err));
+
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      if (controlHideTimer.current) {
+        clearTimeout(controlHideTimer.current);
+      }
+    };
   }, []);
 
   useInterval(
@@ -46,6 +84,10 @@ export default function TimerApp() {
       console.debug("Time's up!");
     }
   }, [timer.secondsRemaining]);
+
+  useEffect(() => {
+    resetControlHideTimer();
+  }, [timer.state, isFullscreen]);
 
   const handleInput = (value: string) => {
     setTimer({
@@ -114,11 +156,21 @@ export default function TimerApp() {
     source.start(0);
   };
 
+  const handleToggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev);
+  };
+
   const startTimeInvalid = !isValidTimeString(timer.startTime);
 
   return (
-    <>
-      <div className="timer-controls">
+    <div
+      className="timer-layout"
+      data-fullscreen={isFullscreen}
+      data-rotated={isRotated}
+      onClick={handleInteraction}
+      onTouchStart={handleInteraction}
+    >
+      <div className="timer-controls" data-standby={!isControlVisible}>
         <TimeField value={timer.startTime} onInput={handleInput} />
         <StartButton
           timerState={timer.state}
@@ -131,7 +183,11 @@ export default function TimerApp() {
         <GongButton disabled={startTimeInvalid} onGong={playGong} />
       </div>
 
-      <TimerDisplay {...timer} />
-    </>
+      <TimerDisplay
+        {...timer}
+        isFullscreen={isFullscreen}
+        onToggleFullscreen={handleToggleFullscreen}
+      />
+    </div>
   );
 }
