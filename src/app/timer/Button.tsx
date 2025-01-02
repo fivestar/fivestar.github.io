@@ -1,14 +1,29 @@
 import React, { ButtonHTMLAttributes } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  IconDefinition,
+  faPlay,
+  faPause,
+  faRotateRight,
+  faBellConcierge,
+} from '@fortawesome/free-solid-svg-icons';
 import { TimerStateType } from './TimerState';
 
 interface ControlButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
+  icon?: IconDefinition;
   variant?: 'primary' | '';
   primary?: boolean;
   onClick: () => void;
 }
 
-function ControlButton({ text, variant = '', disabled = false, onClick }: ControlButtonProps) {
+function ControlButton({
+  text,
+  icon,
+  variant = '',
+  disabled = false,
+  onClick,
+}: ControlButtonProps) {
   return (
     <button
       className={`btn timer-control timer-control--button`}
@@ -16,7 +31,13 @@ function ControlButton({ text, variant = '', disabled = false, onClick }: Contro
       onClick={() => onClick()}
       disabled={disabled}
     >
-      {text}
+      {icon && (
+        <>
+          <FontAwesomeIcon icon={icon} size="1x" />
+          <span className="visually-hidden">{text}</span>
+        </>
+      )}
+      {!icon && text}
     </button>
   );
 }
@@ -37,13 +58,35 @@ export function StartButton({
 }: TriggerButtonProps) {
   switch (timerState) {
     case 'STARTED':
-      return <ControlButton text="Pause" variant="primary" disabled={disabled} onClick={onPause} />;
+      return (
+        <ControlButton
+          text="Pause"
+          icon={faPause}
+          variant="primary"
+          disabled={disabled}
+          onClick={onPause}
+        />
+      );
     case 'PAUSED':
       return (
-        <ControlButton text="Resume" variant="primary" disabled={disabled} onClick={onResume} />
+        <ControlButton
+          text="Resume"
+          icon={faPlay}
+          variant="primary"
+          disabled={disabled}
+          onClick={onResume}
+        />
       );
     default:
-      return <ControlButton text="Start" variant="primary" disabled={disabled} onClick={onStart} />;
+      return (
+        <ControlButton
+          text="Start"
+          icon={faPlay}
+          variant="primary"
+          disabled={disabled}
+          onClick={onStart}
+        />
+      );
   }
 }
 
@@ -52,7 +95,7 @@ interface ResetButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function ResetButton({ disabled = false, onReset }: ResetButtonProps) {
-  return <ControlButton text="Reset" disabled={disabled} onClick={onReset} />;
+  return <ControlButton text="Reset" icon={faRotateRight} disabled={disabled} onClick={onReset} />;
 }
 
 interface GongButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -60,5 +103,5 @@ interface GongButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function GongButton({ disabled = false, onGong }: GongButtonProps) {
-  return <ControlButton text="Gong" disabled={disabled} onClick={onGong} />;
+  return <ControlButton text="Bell" icon={faBellConcierge} disabled={disabled} onClick={onGong} />;
 }

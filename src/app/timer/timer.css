@@ -1,4 +1,5 @@
 .timer-controls {
+  display: flex;
   margin-bottom: 30px;
 }
 
@@ -12,6 +13,7 @@
 
     .timer-control__input {
       width: 72px;
+      text-align: center;
     }
 
     .time-picker {
