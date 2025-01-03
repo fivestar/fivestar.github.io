@@ -6,7 +6,7 @@ import { TimeField } from './TimeField';
 import { TimerState } from './TimerState';
 import { StartButton, ResetButton, GongButton } from './Button';
 import { TimerDisplay } from './TimerDisplay';
-import { toSeconds, isValidTimeString } from './utils';
+import { toSeconds, isValidTimeString, toTimeString } from './utils';
 
 const CONTROL_HIDE_SECONDS = 5;
 
@@ -19,10 +19,10 @@ export default function TimerApp() {
   });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
-  const [isControlVisible, setIsControlVisible] = useState(true);
+  const [isStandby, setIsStandby] = useState(true);
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
-  const controlHideTimer = useRef<NodeJS.Timeout | undefined>(undefined);
+  const standbyTimer = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const checkOrientation = () => {
     const width = window.innerWidth;
@@ -30,25 +30,22 @@ export default function TimerApp() {
     setIsRotated(height > width);
   };
 
-  const resetControlHideTimer = () => {
-    clearTimeout(controlHideTimer.current);
-    setIsControlVisible(true);
+  const resetStandbyTimer = () => {
+    clearTimeout(standbyTimer.current);
+    setIsStandby(false);
 
     if (isFullscreen && timer.state == 'STARTED') {
-      controlHideTimer.current = setTimeout(
-        () => setIsControlVisible(false),
-        CONTROL_HIDE_SECONDS * 1000
-      );
+      standbyTimer.current = setTimeout(() => setIsStandby(true), CONTROL_HIDE_SECONDS * 1000);
     }
   };
 
   const handleInteraction = () => {
-    resetControlHideTimer();
+    resetStandbyTimer();
   };
 
   useEffect(() => {
     audioContextRef.current = new AudioContext();
-    fetch('/assets/audio/dora.m4a')
+    fetch('/assets/audio/bellding-254774.mp3')
       .then((response) => response.arrayBuffer())
       .then((arrayBuffer) => audioContextRef.current?.decodeAudioData(arrayBuffer))
       .then((audioBuffer) => {
@@ -61,8 +58,8 @@ export default function TimerApp() {
 
     return () => {
       window.removeEventListener('resize', checkOrientation);
-      if (controlHideTimer.current) {
-        clearTimeout(controlHideTimer.current);
+      if (standbyTimer.current) {
+        clearTimeout(standbyTimer.current);
       }
     };
   }, []);
@@ -86,7 +83,7 @@ export default function TimerApp() {
   }, [timer.secondsRemaining]);
 
   useEffect(() => {
-    resetControlHideTimer();
+    resetStandbyTimer();
   }, [timer.state, isFullscreen]);
 
   const handleInput = (value: string) => {
@@ -94,6 +91,33 @@ export default function TimerApp() {
       ...timer,
       startTime: value,
     });
+  };
+
+  const handleInputDone = (value: string) => {
+    try {
+      const seconds = toSeconds(value);
+      const formattedValue = toTimeString(seconds);
+
+      if (timer.state != 'STOPPED') {
+        setTimer({
+          ...timer,
+          startTime: formattedValue,
+        });
+        return;
+      }
+
+      setTimer({
+        ...timer,
+        startTime: formattedValue,
+        secondsAtStart: seconds,
+        secondsRemaining: seconds,
+      });
+    } catch (e: unknown) {
+      setTimer({
+        ...timer,
+        startTime: value,
+      });
+    }
   };
 
   const handleStart = () => {
@@ -137,7 +161,7 @@ export default function TimerApp() {
         secondsAtStart: sec,
         secondsRemaining: sec,
       });
-    } catch (e) {
+    } catch (e: unknown) {
       if (e instanceof Error) {
         console.error('Failed to parse time: ', e.message);
       }
@@ -167,11 +191,17 @@ export default function TimerApp() {
       className="timer-layout"
       data-fullscreen={isFullscreen}
       data-rotated={isRotated}
+      data-standby={isStandby}
       onClick={handleInteraction}
       onTouchStart={handleInteraction}
     >
-      <div className="timer-controls" data-standby={!isControlVisible}>
-        <TimeField value={timer.startTime} onInput={handleInput} />
+      <div className="timer-controls timer-layout__standby-hidden">
+        <TimeField
+          value={timer.startTime}
+          disabled={timer.state != 'STOPPED'}
+          onInput={handleInput}
+          onInputDone={handleInputDone}
+        />
         <StartButton
           timerState={timer.state}
           disabled={startTimeInvalid}

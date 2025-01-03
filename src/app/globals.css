@@ -499,6 +499,10 @@ textarea {
   background-color: var(--gray-100);
   font-size: var(--font-size-small);
 
+  &:disabled {
+    color: var(--gray-500);
+  }
+
   &[aria-invalid='true'] {
     border-color: color-mix(in srgb, var(--safety-red) 60%, var(--white));
     background-color: color-mix(in srgb, var(--safety-red) 15%, var(--white));

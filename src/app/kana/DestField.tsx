@@ -25,16 +25,6 @@ export function DestField({
   activeId,
   onCopy,
 }: DestFieldProps) {
-  const [buttonLabel, setButtonLabel] = useState('');
-
-  useEffect(() => {
-    if (activeId === id) {
-      setButtonLabel('Copied');
-    } else {
-      setButtonLabel('Copy button');
-    }
-  }, [activeId, id]);
-
   const handleCopyClick = () => {
     navigator.clipboard
       .writeText(convertedText)
@@ -77,7 +67,7 @@ export function DestField({
               <FontAwesomeIcon icon={faCheck} size="sm" />
             </>
           )}
-          <span className="visually-hidden">{buttonLabel}</span>
+          <span className="visually-hidden">{activeId == id ? 'Copied' : 'Copy button'}</span>
         </button>
       </div>
     </div>

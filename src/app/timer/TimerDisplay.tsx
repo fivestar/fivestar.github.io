@@ -41,7 +41,7 @@ export function TimerDisplay({
         hidden={state == 'STOPPED'}
       ></progress>
       <div className="timer-display__time">{toTimeString(secondsRemaining)}</div>
-      <div className="timer-display__toggle">
+      <div className="timer-display__toggle timer-layout__standby-hidden">
         <button className="btn" data-variant="transparent" onClick={(e) => onToggleFullscreen()}>
           <FontAwesomeIcon icon={isFullscreen ? faCompress : faExpand} size="lg" />
           <span className="visually-hidden">

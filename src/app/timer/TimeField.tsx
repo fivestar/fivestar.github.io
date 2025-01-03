@@ -7,12 +7,14 @@ import { isValidTimeString } from './utils';
 
 interface TimeFieldProps {
   value: string;
+  disabled: boolean;
   onInput: (value: string) => void;
+  onInputDone: (value: string) => void;
 }
 
 const timeChoices = ['1:00', '3:00', '5:00', '10:00', '15:00', '20:00', '30:00'];
 
-export function TimeField({ value, onInput }: TimeFieldProps) {
+export function TimeField({ value, disabled, onInput, onInputDone }: TimeFieldProps) {
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [focusedKey, setFocusedKey] = useState(-1);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -33,10 +35,10 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
     }
   };
 
-  const handleTimePick = (time: string, key: number) => {
-    onInput(time);
+  const handleTimePick = (time: string) => {
+    onInputDone(time);
     setShowTimePicker(false);
-    setFocusedKey(key);
+    setFocusedKey(-1);
   };
 
   const handleFocus = () => {
@@ -45,37 +47,46 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
     }
 
     const rect = inputRef.current.getBoundingClientRect();
-    //pickerRef.current.style.top = rect.height + 'px';
     pickerRef.current.style.right = '0';
     setShowTimePicker(true);
   };
 
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const nextFocus = e.relatedTarget;
+  const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
+    const nextFocus = event.relatedTarget;
     if (!pickerRef.current?.contains(nextFocus)) {
       setShowTimePicker(false);
+      onInputDone(value);
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Escape') {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Escape') {
       setShowTimePicker(false);
       inputRef.current?.focus();
       return;
     }
 
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
       focusNextOption();
     }
 
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
       focusPreviousOption();
     }
 
-    if (e.key === 'Enter') {
-      pickFocusedOption();
+    if (event.key === 'Enter') {
+      if (focusedKey > -1) {
+        pickFocusedOption();
+
+        // Delay the firing of onBlur events.
+        setTimeout(() => {
+          (event.target as HTMLInputElement).blur();
+        }, 0);
+      } else if (isValidTimeString(value)) {
+        (event.target as HTMLInputElement).blur();
+      }
     }
   };
 
@@ -99,7 +110,7 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
     if (focusedKey === -1) {
       return;
     }
-    handleTimePick(timeChoices[focusedKey], focusedKey);
+    handleTimePick(timeChoices[focusedKey]);
   };
 
   // eslint-disable-next-line
@@ -129,6 +140,7 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
           id="timer-input"
           ref={inputRef}
           value={value}
+          disabled={disabled}
           aria-haspopup={true}
           aria-controls="time-picker"
           aria-invalid={!isValidTimeString(value)}
@@ -152,7 +164,7 @@ export function TimeField({ value, onInput }: TimeFieldProps) {
             role="option"
             tabIndex={-1}
             aria-selected={index === focusedKey}
-            onClick={() => handleTimePick(tm, index)}
+            onClick={() => handleTimePick(tm)}
           >
             {tm}
           </li>
