@@ -13,7 +13,7 @@ export function SourceField({ text, placeholder, setText }: SourceFieldProps) {
   return (
     <div className="kana-control">
       <label className="kana-control__label" htmlFor="kana-source">
-        Enter Your Text <FontAwesomeIcon icon={faPenToSquare} size="sm" />
+        <FontAwesomeIcon icon={faPenToSquare} size="sm" /> Enter Your Text
       </label>
       <div className="kana-control__area">
         <textarea

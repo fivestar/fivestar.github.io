@@ -128,20 +128,22 @@ export function TimeField({ value, disabled, onInput, onInputDone }: TimeFieldPr
   }, []);
 
   return (
-    <div className="timer-control timer-control--time">
+    <div className="timer-control" data-control-kind="time">
       <div className="input-group">
-        <label htmlFor="timer-input" className="timer-control__label input-group__text">
+        <label htmlFor="timer-input" className="input-group__text">
           <FontAwesomeIcon icon={faStopwatch} size="sm" />
           <span className="visually-hidden">Timer input</span>
         </label>{' '}
         <input
           type="text"
-          className={'input-field timer-control__input'}
+          className={'input-field'}
           id="timer-input"
           ref={inputRef}
           value={value}
           disabled={disabled}
+          role="combobox"
           aria-haspopup={true}
+          aria-expanded={showTimePicker}
           aria-controls="time-picker"
           aria-invalid={!isValidTimeString(value)}
           onChange={handleChange}

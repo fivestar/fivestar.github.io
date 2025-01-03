@@ -15,11 +15,11 @@
     margin-left: 8px;
   }
 
-  &.timer-control--time {
+  &[data-control-kind='time'] {
     position: relative;
     display: inline-block;
 
-    .timer-control__input {
+    .input-field {
       width: 72px;
       text-align: center;
     }
@@ -29,8 +29,8 @@
     }
   }
 
-  &.timer-control--button {
-    min-width: 72px;
+  &[data-control-kind='button'] {
+    min-width: 64px;
   }
 }
 

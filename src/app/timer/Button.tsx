@@ -26,7 +26,8 @@ function ControlButton({
 }: ControlButtonProps) {
   return (
     <button
-      className={`btn timer-control timer-control--button`}
+      className={`btn timer-control`}
+      data-control-kind="button"
       data-variant={variant}
       onClick={() => onClick()}
       disabled={disabled}

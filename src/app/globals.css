@@ -56,11 +56,12 @@
   --zindex-fullscreen: 500;
   --zindex-time-picker: 1000;
 
-  --layout-padding: 16px;
+  --layout-padding-tb: 16px;
+  --layout-padding-lr: 24px;
 
   --brand-width: 256px;
   --brand-size: var(--font-size-large);
-  --site-header-height: calc(var(--layout-padding) * 2 + var(--brand-size));
+  --site-header-height: calc(var(--layout-padding-tb) * 2 + var(--brand-size));
   --content-header-flex-wrap: wrap;
 
   --timer-display-progress-bar-height: 8px;
@@ -82,7 +83,7 @@
 /* mobile & tablet */
 @media screen and (width < 1200px) {
   :root {
-    --container-spacing-lr: 16px;
+    --container-spacing-lr: var(--layout-padding-lr);
 
     --font-size-small: 16px;
     --font-size-regular: 18px;
@@ -199,7 +200,7 @@ textarea {
 .site-header {
   width: 100%;
   height: var(--site-header-height);
-  padding: var(--layout-padding);
+  padding: var(--layout-padding-tb) var(--layout-padding-lr);
 
   .content-header {
     position: relative;
@@ -253,7 +254,7 @@ textarea {
       top: 0;
       left: 0;
       z-index: var(--zindex-site-header);
-      padding: var(--layout-padding);
+      padding: var(--layout-padding-tb) var(--layout-padding-lr);
     }
   }
 }
@@ -511,7 +512,7 @@ textarea {
 .input-group {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: stretch;
 
   .input-group__text {
