@@ -203,7 +203,7 @@
 
 /* Fullscreen mode */
 .timer-layout[data-fullscreen='true'] {
-  --timer-display-padding: 16px;
+  --timer-display-padding: 8px;
 
   position: fixed;
   top: 0;
@@ -242,7 +242,7 @@
   }
 
   .timer-progress {
-    top: calc(50% + 36vw / 2 + var(--font-size-small));
+    top: calc(50% + 36vw / 2);
   }
 
   &[data-rotated='true'] {
@@ -260,7 +260,7 @@
     }
 
     .timer-progress {
-      top: calc(50% + 36svh / 2 + var(--font-size-small));
+      top: calc(50% + 36svh / 2);
     }
   }
 
