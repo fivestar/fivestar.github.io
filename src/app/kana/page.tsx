@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../SiteHeader';
 import './kana.css';
-import { titleAndDescription } from '../shared-metadata';
+import { titleAndDescription, appleMobileWebApp } from '../shared-metadata';
 import KanaApp from './KanaApp';
 
 export const metadata: Metadata = {
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: 'Kana - fvstr.jp',
     description: '日本語の全角/半角、ひらがな/カタカナ変換を簡単に行えるツールです',
   }),
+  ...appleMobileWebApp(),
 };
 
 export default function KanaPage() {

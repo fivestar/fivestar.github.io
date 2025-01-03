@@ -4,7 +4,7 @@ import { Ubuntu, Noto_Sans_Display } from 'next/font/google';
 
 import 'sanitize.css';
 import './globals.css';
-import { titleAndDescription } from './shared-metadata';
+import { titleAndDescription, appleMobileWebApp } from './shared-metadata';
 import { SiteFooter } from './SiteFooter';
 
 // https://docs.fontawesome.com/web/use-with/react/use-with
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: 'fvstr.jp',
     description: "fivestar's personal website",
   }),
+  ...appleMobileWebApp(),
 };
 
 export const viewport: Viewport = {

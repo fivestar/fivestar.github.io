@@ -35,13 +35,13 @@ export function TimerDisplay({
       aria-label={secondsRemaining + ' seconds remaining...'}
     >
       <progress
-        className="timer-display__progress"
+        className="timer-progress"
         value={secondsAtStart - secondsRemaining}
         max={secondsAtStart}
         hidden={state == 'STOPPED'}
       ></progress>
       <div className="timer-display__time">{toTimeString(secondsRemaining)}</div>
-      <div className="timer-display__toggle timer-layout__standby-hidden">
+      <div className="timer-fullscreen-toggle timer-layout__standby-hidden">
         <button className="btn" data-variant="transparent" onClick={(e) => onToggleFullscreen()}>
           <FontAwesomeIcon icon={isFullscreen ? faCompress : faExpand} size="lg" />
           <span className="visually-hidden">

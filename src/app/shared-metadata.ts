@@ -18,3 +18,10 @@ export function titleAndDescription({
     },
   };
 }
+
+export function appleMobileWebApp() {
+  return {
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'black-transparent',
+  };
+}

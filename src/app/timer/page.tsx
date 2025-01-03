@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../SiteHeader';
 import './timer.css';
-import { titleAndDescription } from '../shared-metadata';
+import { titleAndDescription, appleMobileWebApp } from '../shared-metadata';
 import TimerApp from './TimerApp';
 
 export const metadata: Metadata = {
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: 'Timer - fvstr.jp',
     description: 'Countdown for talks',
   }),
+  ...appleMobileWebApp(),
 };
 
 export default function TimerPage() {

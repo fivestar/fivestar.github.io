@@ -92,38 +92,10 @@
     text-overflow: ellipsis;
   }
 
-  .timer-display__progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: var(--timer-display-progress-bar-height);
-    background-color: var(--gray-200);
-    border-radius: 0;
-
-    &::-webkit-progress-bar {
-      background-color: var(--gray-200);
-    }
-
-    &[hidden] {
-      display: none;
-      visibility: hidden;
-    }
-  }
-
-  .timer-display__toggle {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: var(--timer-display-padding);
-    color: var(--gray-300);
-  }
-
   &[data-variant='default'] {
     background-color: var(--gray-100);
 
-    .timer-display__progress {
+    .timer-progress {
       &::-webkit-progress-value {
         background-color: var(--progress-green);
       }
@@ -141,7 +113,7 @@
   &[data-variant='warning'] {
     background-color: var(--safety-yellow);
 
-    .timer-display__progress {
+    .timer-progress {
       &::-webkit-progress-value {
         background-color: var(--progress-warning);
       }
@@ -160,7 +132,7 @@
     background-color: var(--safety-orange);
     color: var(--white);
 
-    .timer-display__progress {
+    .timer-progress {
       &::-webkit-progress-value {
         background-color: var(--progress-alert);
       }
@@ -179,7 +151,7 @@
     background-color: var(--safety-red);
     color: var(--white);
 
-    .timer-display__progress {
+    .timer-progress {
       &::-webkit-progress-value {
         background-color: var(--progress-proceeded);
       }
@@ -201,8 +173,38 @@
   }
 }
 
+.timer-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--timer-display-progress-bar-height);
+  background-color: var(--gray-200);
+  border-radius: 0;
+
+  &::-webkit-progress-bar {
+    background-color: var(--gray-200);
+  }
+
+  &[hidden] {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.timer-fullscreen-toggle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: var(--timer-display-padding);
+  color: var(--gray-300);
+}
+
 /* Fullscreen mode */
 .timer-layout[data-fullscreen='true'] {
+  --timer-display-padding: 16px;
+
   position: fixed;
   top: 0;
   bottom: 0;
@@ -218,6 +220,7 @@
     top: 0;
     left: 0;
     margin: var(--timer-display-padding);
+
     z-index: 1;
   }
 
@@ -227,10 +230,6 @@
     left: 0;
     right: 0;
     margin: 0;
-
-    .timer-display__progress {
-      top: calc(50% + 36vw / 2 + var(--font-size-small));
-    }
 
     .timer-display__time {
       height: 100%;
@@ -242,21 +241,26 @@
     }
   }
 
+  .timer-progress {
+    top: calc(50% + 36vw / 2 + var(--font-size-small));
+  }
+
   &[data-rotated='true'] {
     width: 100svh;
     height: 100vw;
     top: calc((100svh - 100vw) / 2);
     left: calc((100vw - 100svh) / 2);
+    padding-right: env(safe-area-inset-bottom, 0);
     transform: rotate(90deg);
 
     .timer-display {
       .timer-display__time {
         font-size: 36svh;
       }
+    }
 
-      .timer-display__progress {
-        top: calc(50% + 36svh / 2 + var(--font-size-small));
-      }
+    .timer-progress {
+      top: calc(50% + 36svh / 2 + var(--font-size-small));
     }
   }
 
