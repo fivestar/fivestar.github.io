@@ -18,7 +18,7 @@ export function TimerDisplay({
 }: TimerDisplayProps) {
   const renderVariant = () => {
     if (secondsRemaining <= 0) {
-      return 'timeup';
+      return 'exceeded';
     } else if (secondsRemaining <= 30) {
       return 'alert';
     } else if (secondsRemaining <= 60) {

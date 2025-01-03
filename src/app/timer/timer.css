@@ -147,21 +147,21 @@
     }
   }
 
-  &[data-variant='timeup'] {
+  &[data-variant='exceeded'] {
     background-color: var(--safety-red);
     color: var(--white);
 
     .timer-progress {
       &::-webkit-progress-value {
-        background-color: var(--progress-proceeded);
+        background-color: var(--progress-exceeded);
       }
 
       &::-moz-progress-bar {
-        background-color: var(--progress-proceeded);
+        background-color: var(--progress-exceeded);
       }
 
       &::-ms-fill {
-        background-color: var(--progress-proceeded);
+        background-color: var(--progress-exceeded);
       }
     }
   }
