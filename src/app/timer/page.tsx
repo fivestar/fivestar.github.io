@@ -32,9 +32,9 @@ export default function TimerPage() {
 
       <main className="main">
         <div className="container">
-          <article className="content">
+          <div className="content">
             <TimerApp />
-          </article>
+          </div>
         </div>
       </main>
     </>

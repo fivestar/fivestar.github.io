@@ -83,7 +83,7 @@
     width: 100%;
     font-family: var(--font-noto-sans-display), sans-serif;
     font-weight: var(--font-weight-semi-bold);
-    font-size: 36vw;
+    font-size: 24vw;
     line-height: 1.2;
     align-items: center;
     justify-content: center;
@@ -203,7 +203,7 @@
 
 /* Fullscreen mode */
 .timer-layout[data-fullscreen='true'] {
-  --timer-display-padding: 8px;
+  --timer-display-padding: 12px;
 
   position: fixed;
   top: 0;
@@ -233,7 +233,7 @@
 
     .timer-display__time {
       height: 100%;
-      font-size: 36vw;
+      font-size: 32vw;
     }
 
     &[data-variant='default'] {
@@ -242,7 +242,7 @@
   }
 
   .timer-progress {
-    top: calc(50% + 36vw / 2);
+    top: calc(50% + 32vw / 2);
   }
 
   &[data-rotated='true'] {
@@ -255,12 +255,12 @@
 
     .timer-display {
       .timer-display__time {
-        font-size: 36svh;
+        font-size: 32svh;
       }
     }
 
     .timer-progress {
-      top: calc(50% + 36svh / 2);
+      top: calc(50% + 32svh / 2);
     }
   }
 

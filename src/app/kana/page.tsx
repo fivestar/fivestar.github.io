@@ -32,9 +32,9 @@ export default function KanaPage() {
 
       <main className="main">
         <div className="container">
-          <article className="content">
+          <div className="content">
             <KanaApp />
-          </article>
+          </div>
         </div>
       </main>
     </>

@@ -1,17 +1,115 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import avatarRacingPic from '@@/assets/img/avatars/racing.jpg';
 import avatarPhpconPic from '@@/assets/img/avatars/phpcon.png';
 import avatarGirlPic from '@@/assets/img/avatars/girl.png';
 import bookcoverPerfectPic from '@@/assets/img/bookcovers/perfect.jpg';
 import bookcoverWebappPic from '@@/assets/img/bookcovers/webapp.png';
 
+type InfoItem = {
+  title: string;
+  url: string;
+  description?: string;
+};
+
+type BookItem = {
+  id: string;
+  title: string;
+  url: string;
+  coverImage: StaticImageData;
+  publishDate: string;
+  publishDateFormat: string;
+  presentationURL: string;
+  presentationEvent: string;
+  isbn: string;
+  amazonURL: string;
+  parts?: InfoItem[];
+};
+
+const apps: InfoItem[] = [
+  {
+    title: 'Kana',
+    url: '/kana',
+    description: 'Japanese "hiragana/katakana" and "zenkaku/hankaku" transformer.',
+  },
+  { title: 'Timer', url: '/timer', description: 'Countdown timer for talks' },
+];
+
+const links: InfoItem[] = [
+  { title: 'Note', url: 'https://note.com/fivestr' },
+  { title: 'Hatena Blog', url: 'https://fivestar.hatenablog.com/' },
+  { title: 'Facebook', url: 'https://www.facebook.com/katsuhiro.ogawa' },
+  { title: 'GitHub', url: 'https://github.com/fivestar' },
+  { title: 'Twitter', url: 'https://twitter.com/fivestr' },
+  { title: 'LinkedIn', url: 'https://www.linkedin.com/in/katsuhiroogawa/' },
+  { title: 'SlideShare', url: 'https://www.slideshare.net/fivestar' },
+  { title: 'Speaker Deck', url: 'https://speakerdeck.com/u/fivestar' },
+];
+
+const repos: InfoItem[] = [
+  {
+    title: 'Resozyme',
+    url: 'https://github.com/fivestar/resozyme',
+    description: 'Resource-oriented framework for building the RESTful web application in Go.',
+  },
+  {
+    title: 'CrocosSecurityBundle',
+    url: 'https://github.com/crocos/CrocosSecurityBundle',
+    description: 'Symfony bundle provides a simple way to manage auth with annotation.',
+  },
+  {
+    title: 'memberid',
+    url: 'https://github.com/navy/memberid',
+    description: 'ID management/converting utility for helping your team members management.',
+  },
+  {
+    title: 'Navy',
+    url: 'https://github.com/navy/navy',
+    description: 'GitHub web-hooked event handling framework.',
+  },
+];
+
+const books: BookItem[] = [
+  {
+    id: 'urn:isbn:978-4-7741-4437-5',
+    title: 'パーフェクトPHP',
+    url: 'https://gihyo.jp/book/2010/978-4-7741-4437-5',
+    coverImage: bookcoverPerfectPic,
+    publishDate: '2010-11-12',
+    publishDateFormat: 'Nov. 12, 2010',
+    presentationURL: 'https://www.slideshare.net/fivestar/php-5288493',
+    presentationEvent: '#phpcon2010',
+    isbn: '978-4-7741-4437-5',
+    amazonURL:
+      'https://www.amazon.co.jp/dp/4774144371/?&_encoding=UTF8&tag=kofivestar-22&linkCode=ur2&linkId=ba8bf8a2f8a9334a85b7d3ac4acfaaba&camp=247&creative=1211',
+  },
+  {
+    id: 'urn:isbn:978-4-7741-5082-6',
+    title: '効率的なWebアプリケーションの作り方',
+    url: 'https://gihyo.jp/book/2012/978-4-7741-5082-6',
+    coverImage: bookcoverWebappPic,
+    publishDate: '2012-05-26',
+    publishDateFormat: 'May 26, 2012',
+    presentationURL: 'https://speakerdeck.com/fivestar/xiao-lu-de-nawebapurikesiyonfalsezuo-rifang',
+    presentationEvent: '#Symfony2Study',
+    isbn: '978-4-7741-5082-6',
+    amazonURL:
+      'https://www.amazon.co.jp/dp/4774150827/?&_encoding=UTF8&tag=kofivestar-22&linkCode=ur2&linkId=9742996e114614ba537f97011c4515f1&camp=247&creative=1211',
+    parts: [
+      {
+        title: 'Application repo',
+        url: 'https://github.com/fivestar/php-rentacar',
+      },
+    ],
+  },
+];
+
 export default function Home() {
   return (
-    <article className="content">
+    <div className="content">
       <Section title="About">
         <ul className="infolist" itemScope itemType="https://schema.org/Person">
-          <li className="infolist_item">
+          <li className="infolist__item">
             <div className="infolist__title" data-keyinfo={true}>
               <span itemProp="name">
                 <span lang="en">Katsuhiro Ogawa</span> (
@@ -84,285 +182,124 @@ export default function Home() {
 
       <Section title="Apps">
         <ul className="infolist">
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <Link href="/kana">Kana</Link>
-            </div>
-            <div className="infolist__description">
-              Japanese &quot;hiragana/katakana&quot; and &quot;zenkaku/hankaku&quot; transformer.
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <Link href="/timer">Timer</Link>
-            </div>
-            <div className="infolist__description">Simple web countdown timer.</div>
-          </li>
+          {apps.map((app, index) => (
+            <li key={index} className="infolist__item">
+              <div className="infolist__title">
+                <Link href={app.url}>{app.title}</Link>
+              </div>
+              <div className="infolist__description">{app.description}</div>
+            </li>
+          ))}
         </ul>
       </Section>
 
       <Section title="Links">
         <ul className="infolist">
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://note.com/fivestr" target="_blank" rel="noreferrer">
-                Note
-              </a>
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://fivestar.hatenablog.com/" target="_blank" rel="noreferrer">
-                Blog
-              </a>
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://www.facebook.com/katsuhiro.ogawa" target="_blank" rel="noreferrer">
-                Facebook
-              </a>
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://github.com/fivestar" target="_blank" rel="noreferrer">
-                GitHub
-              </a>
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://twitter.com/fivestr" target="_blank" rel="noreferrer">
-                Twitter
-              </a>
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a
-                href="https://www.linkedin.com/in/katsuhiroogawa/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://speakerdeck.com/u/fivestar" target="_blank" rel="noreferrer">
-                Slides
-              </a>{' '}
-              (
-              <a href="https://www.slideshare.net/fivestar" target="_blank" rel="noreferrer">
-                Old
-              </a>
-              )
-            </div>
-          </li>
+          {links.map((link, index) => (
+            <li key={index} className="infolist__item">
+              <div className="infolist__title">
+                <a href={link.url} target="_blank" rel="noreferrer">
+                  {link.title}
+                </a>
+              </div>
+            </li>
+          ))}
         </ul>
       </Section>
 
       <Section title="Repos">
         <ul className="infolist">
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://github.com/fivestar/resozyme" target="_blank" rel="noreferrer">
-                Resozyme
-              </a>
-            </div>
-            <div className="infolist__description">
-              Resource-oriented framework for building the RESTful web application in Go.
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a
-                href="https://github.com/crocos/CrocosSecurityBundle"
-                target="_blank"
-                rel="noreferrer"
-              >
-                CrocosSecurityBundle
-              </a>
-            </div>
-            <div className="infolist__description">
-              Symfony bundle provides a simple way to manage auth with annotation.
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://github.com/navy/memberid" target="_blank" rel="noreferrer">
-                memberid
-              </a>
-            </div>
-            <div className="infolist__description">
-              ID management/converting utility for helping your team members management.
-            </div>
-          </li>
-          <li className="infolist_item">
-            <div className="infolist__title">
-              <a href="https://github.com/navy/navy" target="_blank" rel="noreferrer">
-                Navy
-              </a>
-            </div>
-            <div className="infolist__description">GitHub web-hooked event handling framework.</div>
-          </li>
+          {repos.map((repo, index) => (
+            <li key={index} className="infolist__item">
+              <div className="infolist__title">
+                <a href={repo.url} target="_blank" rel="noreferrer">
+                  {repo.title}
+                </a>
+              </div>
+              <div className="infolist__description">{repo.description}</div>
+            </li>
+          ))}
         </ul>
       </Section>
 
       <Section title="Books">
-        <div
-          className="media"
-          itemScope
-          itemType="https://schema.org/Book"
-          itemID="urn:isbn:978-4-7741-4437-5"
-        >
-          <div className="media__thumbnail">
-            <a href="https://gihyo.jp/book/2010/978-4-7741-4437-5" target="_blank" rel="noreferrer">
-              <Image src={bookcoverPerfectPic} alt="Cover of パーフェクトPHP" itemProp="image" />
-            </a>
-          </div>
-          <div className="media__content">
-            <ul className="infolist">
-              <li className="infolist_item">
-                <div className="infolist__title">
-                  <a
-                    href="https://gihyo.jp/book/2010/978-4-7741-4437-5"
-                    target="_blank"
-                    rel="noreferrer"
-                    itemProp="url"
-                  >
-                    <span itemProp="name">パーフェクトPHP</span>
-                  </a>
-                </div>
-                <div className="infolist__description">
-                  Published at{' '}
-                  <time dateTime="2010-11-12" itemProp="datePublished">
-                    Nov. 12, 2010
-                  </time>
-                </div>
-                <div className="infolist__description">
-                  Talked at{' '}
-                  <span
-                    itemProp="subjectOf"
-                    itemScope
-                    itemType="https://schema.org/PresentationDigitalDocument"
-                  >
-                    <a
-                      href="https://www.slideshare.net/fivestar/php-5288493"
-                      target="_blank"
-                      rel="noreferrer"
-                      itemProp="url"
-                    >
-                      #phpcon2010
+        {books.map((book) => (
+          <div
+            key={book.id}
+            className="media"
+            itemScope
+            itemType="https://schema.org/Book"
+            itemID={book.id}
+          >
+            <div className="media__thumbnail">
+              <a href={book.url} target="_blank" rel="noreferrer">
+                <Image src={book.coverImage} alt={'Cover of ' + book.title} itemProp="image" />
+              </a>
+            </div>
+            <div className="media__content">
+              <ul className="infolist">
+                <li className="infolist__item">
+                  <div className="infolist__title">
+                    <a href={book.url} target="_blank" rel="noreferrer" itemProp="url">
+                      <span itemProp="name">{book.title}</span>
                     </a>
-                  </span>
-                </div>
-                <div className="infolist__description">
-                  ISBN: <span itemProp="isbn">978-4-7741-4437-5</span>
-                </div>
-                <div className="infolist__description">
-                  <a
-                    href="https://www.amazon.co.jp/dp/4774144371/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=ba8bf8a2f8a9334a85b7d3ac4acfaaba&amp;camp=247&amp;creative=1211"
-                    target="_blank"
-                    rel="noreferrer"
-                    itemProp="url"
-                  >
-                    Amazon
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div
-          className="media"
-          itemScope
-          itemType="https://schema.org/Book"
-          itemID="urn:isbn:978-4-7741-5082-6"
-        >
-          <div className="media__thumbnail">
-            <a href="https://gihyo.jp/book/2012/978-4-7741-5082-6" target="_blank" rel="noreferrer">
-              <Image
-                src={bookcoverWebappPic}
-                alt="Cover of 効率的なWebアプリケーションの作り方"
-                itemProp="image"
-              />
-            </a>
-          </div>
-          <div className="media__content">
-            <ul className="infolist">
-              <li className="infolist_item">
-                <div className="infolist__title">
-                  <a
-                    href="https://gihyo.jp/book/2012/978-4-7741-5082-6"
-                    target="_blank"
-                    rel="noreferrer"
-                    itemProp="url"
-                  >
-                    <span itemProp="name">効率的なWebアプリケーションの作り方</span>
-                  </a>
-                </div>
-                <div className="infolist__description">
-                  Published at{' '}
-                  <time dateTime="2012-05-26" itemProp="datePublished">
-                    May 26, 2012
-                  </time>
-                </div>
-                <div className="infolist__description">
-                  Talked at{' '}
-                  <span
-                    itemProp="subjectOf"
-                    itemScope
-                    itemType="https://schema.org/PresentationDigitalDocument"
-                  >
-                    <a
-                      href="https://speakerdeck.com/fivestar/xiao-lu-de-nawebapurikesiyonfalsezuo-rifang"
-                      target="_blank"
-                      rel="noreferrer"
-                      itemProp="url"
+                  </div>
+                  <div className="infolist__description">
+                    Published:{' '}
+                    <time dateTime={book.publishDate} itemProp="datePublished">
+                      {book.publishDateFormat}
+                    </time>
+                  </div>
+                  <div className="infolist__description">
+                    Slides:{' '}
+                    <span
+                      itemProp="subjectOf"
+                      itemScope
+                      itemType="https://schema.org/PresentationDigitalDocument"
                     >
-                      #Symfony2Study
+                      <a
+                        href={book.presentationURL}
+                        target="_blank"
+                        rel="noreferrer"
+                        itemProp="url"
+                      >
+                        {book.presentationEvent}
+                      </a>
+                    </span>
+                  </div>
+                  <div className="infolist__description">
+                    ISBN: <span itemProp="isbn">{book.isbn}</span>
+                  </div>
+                  <div className="infolist__description">
+                    <a href={book.amazonURL} target="_blank" rel="noreferrer" itemProp="url">
+                      Amazon
                     </a>
-                  </span>
-                </div>
-                <div className="infolist__description">
-                  ISBN: <span itemProp="isbn">978-4-7741-5082-6</span>
-                </div>
-                <div className="infolist__description">
-                  <a
-                    href="https://www.amazon.co.jp/dp/4774150827/?&amp;_encoding=UTF8&amp;tag=kofivestar-22&amp;linkCode=ur2&amp;linkId=9742996e114614ba537f97011c4515f1&amp;camp=247&amp;creative=1211"
-                    target="_blank"
-                    rel="noreferrer"
-                    itemProp="url"
-                  >
-                    Amazon
-                  </a>
-                </div>
-                <div className="infolist__description">
-                  <span
-                    itemProp="hasPart"
-                    itemScope
-                    itemType="https://schema.org/SoftwareSourceCode"
-                  >
-                    <a
-                      href="https://github.com/fivestar/php-rentacar"
-                      target="_blank"
-                      rel="noreferrer"
-                      itemProp="codeRepository"
-                    >
-                      Application repo
-                    </a>
-                  </span>
-                </div>
-              </li>
-            </ul>
+                  </div>
+                  {book.parts?.map((part, index) => (
+                    <div key={index} className="infolist__description">
+                      <span
+                        itemProp="hasPart"
+                        itemScope
+                        itemType="https://schema.org/SoftwareSourceCode"
+                      >
+                        <a
+                          href={part.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          itemProp="codeRepository"
+                        >
+                          {part.title}
+                        </a>
+                      </span>
+                    </div>
+                  ))}
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
+        ))}
       </Section>
-    </article>
+    </div>
   );
 }
 
