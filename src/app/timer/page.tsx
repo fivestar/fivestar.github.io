@@ -16,10 +16,12 @@ export const metadata: Metadata = {
 
 export default function TimerPage() {
   return (
-    <>
-      <SiteHeader>
+    <div className="page">
+      <SiteHeader logoOnly={true} />
+
+      <main className="main">
         <div className="container">
-          <div className="content-header">
+          <div className="content-header main-header">
             <h2 className="content-header__title">
               <Link href="/timer" className="content-header__link">
                 Timer
@@ -27,16 +29,12 @@ export default function TimerPage() {
             </h2>
             <p className="content-header__description">Countdown for talks</p>
           </div>
-        </div>
-      </SiteHeader>
 
-      <main className="main">
-        <div className="container">
           <div className="content">
             <TimerApp />
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }

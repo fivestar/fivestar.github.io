@@ -3,12 +3,12 @@ import Link from 'next/link';
 import iconPic from '@@/assets/img/icon.png';
 
 export function SiteHeader({
-  children,
+  logoOnly,
 }: Readonly<{
-  children?: React.ReactNode;
+  logoOnly?: boolean;
 }>) {
   return (
-    <header className="site-header" data-brand-only={!children}>
+    <header className="site-header" data-logo-only={logoOnly}>
       <h1 className="brand">
         <Link href="/" className="brand__link">
           <div className="brand__container">
@@ -20,7 +20,6 @@ export function SiteHeader({
           </div>
         </Link>
       </h1>
-      {children}
     </header>
   );
 }

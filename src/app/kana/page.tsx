@@ -16,10 +16,12 @@ export const metadata: Metadata = {
 
 export default function KanaPage() {
   return (
-    <>
-      <SiteHeader>
+    <div className="page">
+      <SiteHeader logoOnly={true} />
+
+      <main className="main">
         <div className="container">
-          <div className="content-header">
+          <div className="content-header main-header">
             <h2 className="content-header__title">
               <Link href="/kana" className="content-header__link">
                 Kana
@@ -27,16 +29,12 @@ export default function KanaPage() {
             </h2>
             <p className="content-header__description">Easy Japanese kana/width transforms</p>
           </div>
-        </div>
-      </SiteHeader>
 
-      <main className="main">
-        <div className="container">
           <div className="content">
             <KanaApp />
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }

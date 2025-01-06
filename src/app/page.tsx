@@ -19,14 +19,14 @@ export default function HomePage() {
   }
 
   return (
-    <>
-      <SiteHeader></SiteHeader>
+    <div className="page">
+      <SiteHeader />
 
       <main className="main">
         <div className="container">
           <Home />
         </div>
       </main>
-    </>
+    </div>
   );
 }
