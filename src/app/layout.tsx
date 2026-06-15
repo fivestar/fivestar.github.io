@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import type { ReactNode } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { Ubuntu, Noto_Sans_Display } from 'next/font/google';
 
@@ -41,7 +42,7 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="ja">

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 import avatarRacingPic from '@@/assets/img/avatars/racing.jpg';
@@ -308,7 +309,7 @@ function Section({
   children,
 }: Readonly<{
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   const id = title
     .toLowerCase()
