@@ -1,5 +1,7 @@
 # fvstr.jp
 
+Personal website hosting personal info plus a few small browser-based web tools. Built with Next.js and hosted on GitHub Pages.
+
 ## Getting Started
 
 ```bash
