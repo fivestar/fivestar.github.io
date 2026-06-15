@@ -103,10 +103,6 @@
       &::-moz-progress-bar {
         background-color: var(--progress-green);
       }
-
-      &::-ms-fill {
-        background-color: var(--progress-green);
-      }
     }
   }
 
@@ -119,10 +115,6 @@
       }
 
       &::-moz-progress-bar {
-        background-color: var(--progress-warning);
-      }
-
-      &::-ms-fill {
         background-color: var(--progress-warning);
       }
     }
@@ -140,10 +132,6 @@
       &::-moz-progress-bar {
         background-color: var(--progress-alert);
       }
-
-      &::-ms-fill {
-        background-color: var(--progress-alert);
-      }
     }
   }
 
@@ -157,10 +145,6 @@
       }
 
       &::-moz-progress-bar {
-        background-color: var(--progress-exceeded);
-      }
-
-      &::-ms-fill {
         background-color: var(--progress-exceeded);
       }
     }
