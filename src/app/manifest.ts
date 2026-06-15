@@ -1,5 +1,8 @@
 import type { MetadataRoute } from 'next';
 
+// Required for static export (`output: 'export'`) in Next 16.
+export const dynamic = 'force-static';
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'fvstr.jp',

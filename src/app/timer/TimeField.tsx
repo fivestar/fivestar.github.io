@@ -120,9 +120,9 @@ export function TimeField({ value, disabled, onInput, onInputDone }: TimeFieldPr
     handleTimePick(timeChoices[focusedKey]);
   };
 
-  // eslint-disable-next-line
-  const handleDocumentClick = (event: any) => {
-    if (!pickerRef.current?.contains(event.target) && !inputRef.current?.contains(event.target)) {
+  const handleDocumentClick = (event: MouseEvent) => {
+    const target = event.target as Node;
+    if (!pickerRef.current?.contains(target) && !inputRef.current?.contains(target)) {
       setShowTimePicker(false);
     }
   };

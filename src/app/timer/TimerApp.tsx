@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useInterval } from 'usehooks-ts';
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from 'react';
+import { useInterval } from './useInterval';
 import { TimeField } from './TimeField';
 import type { TimerState } from './TimerState';
 import { StartButton, ResetButton, GongButton } from './Button';
@@ -9,6 +9,21 @@ import { TimerDisplay } from './TimerDisplay';
 import { toSeconds, isValidTimeString, toTimeString } from './utils';
 
 const CONTROL_HIDE_SECONDS = 5;
+
+function subscribeToResize(callback: () => void) {
+  window.addEventListener('resize', callback);
+  return () => window.removeEventListener('resize', callback);
+}
+
+// Tracks portrait orientation by subscribing to window resize, without
+// setting state inside an effect.
+function useIsRotated() {
+  return useSyncExternalStore(
+    subscribeToResize,
+    () => window.innerHeight > window.innerWidth,
+    () => false
+  );
+}
 
 export default function TimerApp() {
   const [timer, setTimer] = useState<TimerState>({
@@ -18,17 +33,11 @@ export default function TimerApp() {
     secondsRemaining: 5 * 60,
   });
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isRotated, setIsRotated] = useState(false);
   const [isStandby, setIsStandby] = useState(true);
+  const isRotated = useIsRotated();
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
   const standbyTimer = useRef<NodeJS.Timeout | undefined>(undefined);
-
-  const checkOrientation = () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    setIsRotated(height > width);
-  };
 
   const resetStandbyTimer = useCallback(() => {
     clearTimeout(standbyTimer.current);
@@ -53,11 +62,7 @@ export default function TimerApp() {
       })
       .catch((err) => console.error('Error loading audio file', err));
 
-    checkOrientation();
-    window.addEventListener('resize', checkOrientation);
-
     return () => {
-      window.removeEventListener('resize', checkOrientation);
       if (standbyTimer.current) {
         clearTimeout(standbyTimer.current);
       }
@@ -74,15 +79,31 @@ export default function TimerApp() {
     timer.state == 'STARTED' ? 1000 : null
   );
 
+  const playGong = useCallback(() => {
+    if (!audioBufferRef.current || !audioContextRef.current) {
+      console.error('Audio data not ready');
+      return;
+    }
+
+    const source = audioContextRef.current.createBufferSource();
+    source.buffer = audioBufferRef.current;
+    source.connect(audioContextRef.current.destination);
+    source.start(0);
+  }, []);
+
   useEffect(() => {
     if (timer.secondsRemaining === 0) {
       playGong();
 
       console.debug("Time's up!");
     }
-  }, [timer.secondsRemaining]);
+  }, [timer.secondsRemaining, playGong]);
 
   useEffect(() => {
+    // Show the controls and (re)arm the auto-hide timeout whenever fullscreen
+    // or the timer state changes. This is a timeout-driven side effect, so the
+    // synchronous setState is intentional here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     resetStandbyTimer();
   }, [resetStandbyTimer]);
 
@@ -162,18 +183,6 @@ export default function TimerApp() {
         console.error('Failed to parse time: ', e.message);
       }
     }
-  };
-
-  const playGong = () => {
-    if (!audioBufferRef.current || !audioContextRef.current) {
-      console.error('Audio data not ready');
-      return;
-    }
-
-    const source = audioContextRef.current.createBufferSource();
-    source.buffer = audioBufferRef.current;
-    source.connect(audioContextRef.current.destination);
-    source.start(0);
   };
 
   const handleToggleFullscreen = () => {

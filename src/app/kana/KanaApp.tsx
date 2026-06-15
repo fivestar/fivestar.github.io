@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SourceField } from './SourceField';
 import { DestField } from './DestField';
 
@@ -18,9 +18,10 @@ export default function KanaApp() {
   const [text, setText] = useState<string>('');
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  useEffect(() => {
+  const handleTextChange = (value: string) => {
+    setText(value);
     setActiveId(null);
-  }, [text]);
+  };
 
   const handleCopy = (id: string | null) => {
     setActiveId(id);
@@ -31,7 +32,7 @@ export default function KanaApp() {
       <div className="kana-form" data-form-type="in">
         <fieldset>
           <legend>Input Field</legend>
-          <SourceField text={text} placeholder={placeholder} setText={setText} />
+          <SourceField text={text} placeholder={placeholder} setText={handleTextChange} />
         </fieldset>
       </div>
 

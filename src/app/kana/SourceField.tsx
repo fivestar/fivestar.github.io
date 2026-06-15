@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
@@ -6,7 +5,7 @@ import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 interface SourceFieldProps {
   text: string;
   placeholder: string;
-  setText: Dispatch<SetStateAction<string>>;
+  setText: (value: string) => void;
 }
 
 export function SourceField({ text, placeholder, setText }: SourceFieldProps) {
