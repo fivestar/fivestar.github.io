@@ -44,11 +44,11 @@ them fresh each run from the tools and the official docs rather than from memory
    the Makefile — they evolve) and confirm they pass _before_ you change
    anything, so later failures are attributable to your work.
 
-2. **Survey.** Inventory dependencies and security posture (`npm outdated`,
-   `npm audit`), and scan the code for patterns that diverge from current best
-   practices — framework/library APIs, language idioms, and CSS — within the
-   browser-support range the project targets. Flag major version jumps and any
-   coupled changes.
+2. **Survey.** Inventory what's outdated: package dependencies (`npm outdated`,
+   `npm audit`), the GitHub Actions pinned in `.github/workflows`, and code
+   patterns that diverge from current best practices (framework/library APIs,
+   language idioms, and CSS — within the browser-support range the project
+   targets). Flag major version jumps and any coupled changes.
 
 3. **Plan with the user.** Present an organized assessment grouped by the stages
    below, with risk and major jumps called out. Recommend a low-risk-first order
@@ -56,7 +56,9 @@ them fresh each run from the tools and the official docs rather than from memory
 
 4. **Execute, low-risk → high-risk:**
 
-   - **Tooling, config, and hygiene** — rarely affects runtime behavior.
+   - **Tooling, config, and hygiene** — rarely affects runtime behavior;
+     includes keeping CI workflows and their pinned GitHub Actions current
+     (the deploy depends on them — this site ships via GitHub Actions to Pages).
    - **Code-pattern modernization** — idiomatic changes that need no version
      bump. Doing these before upgrades keeps the upgrade diffs small.
    - **Dependency major upgrades** — independent libraries first, then the
