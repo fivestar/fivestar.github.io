@@ -1,23 +1,8 @@
-'use client';
-
-import React, { useEffect } from 'react';
 import { SiteHeader } from './SiteHeader';
 import Home from './Home';
+import { ServiceWorkerRegister } from './ServiceWorkerRegister';
 
 export default function HomePage() {
-  useEffect(() => {
-    if ('serviceWorker' in navigator && 'PushManager' in window) {
-      registerServiceWorker();
-    }
-  }, []);
-
-  async function registerServiceWorker() {
-    await navigator.serviceWorker.register('/sw.js', {
-      scope: '/',
-      updateViaCache: 'none',
-    });
-  }
-
   return (
     <div className="page">
       <SiteHeader />
@@ -27,6 +12,8 @@ export default function HomePage() {
           <Home />
         </div>
       </main>
+
+      <ServiceWorkerRegister />
     </div>
   );
 }

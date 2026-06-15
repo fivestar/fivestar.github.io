@@ -1,4 +1,5 @@
 {
+  "entry": ["public/sw.js"],
   "next": {
     "entry": [
       "next.config.{js,ts,cjs,mjs}",

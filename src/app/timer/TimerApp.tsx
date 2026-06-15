@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useInterval } from 'usehooks-ts';
 import { TimeField } from './TimeField';
-import { TimerState } from './TimerState';
+import type { TimerState } from './TimerState';
 import { StartButton, ResetButton, GongButton } from './Button';
 import { TimerDisplay } from './TimerDisplay';
 import { toSeconds, isValidTimeString, toTimeString } from './utils';
@@ -30,14 +30,14 @@ export default function TimerApp() {
     setIsRotated(height > width);
   };
 
-  const resetStandbyTimer = () => {
+  const resetStandbyTimer = useCallback(() => {
     clearTimeout(standbyTimer.current);
     setIsStandby(false);
 
     if (isFullscreen && timer.state == 'STARTED') {
       standbyTimer.current = setTimeout(() => setIsStandby(true), CONTROL_HIDE_SECONDS * 1000);
     }
-  };
+  }, [isFullscreen, timer.state]);
 
   const handleInteraction = () => {
     resetStandbyTimer();
@@ -66,10 +66,10 @@ export default function TimerApp() {
 
   useInterval(
     () => {
-      setTimer({
-        ...timer,
-        secondsRemaining: timer.secondsRemaining - 1,
-      });
+      setTimer((prev) => ({
+        ...prev,
+        secondsRemaining: prev.secondsRemaining - 1,
+      }));
     },
     timer.state == 'STARTED' ? 1000 : null
   );
@@ -84,13 +84,13 @@ export default function TimerApp() {
 
   useEffect(() => {
     resetStandbyTimer();
-  }, [timer.state, isFullscreen]);
+  }, [resetStandbyTimer]);
 
   const handleInput = (value: string) => {
-    setTimer({
-      ...timer,
+    setTimer((prev) => ({
+      ...prev,
       startTime: value,
-    });
+    }));
   };
 
   const handleInputDone = (value: string) => {
@@ -98,25 +98,21 @@ export default function TimerApp() {
       const seconds = toSeconds(value);
       const formattedValue = toTimeString(seconds);
 
-      if (timer.state != 'STOPPED') {
-        setTimer({
-          ...timer,
-          startTime: formattedValue,
-        });
-        return;
-      }
-
-      setTimer({
-        ...timer,
-        startTime: formattedValue,
-        secondsAtStart: seconds,
-        secondsRemaining: seconds,
-      });
+      setTimer((prev) =>
+        prev.state != 'STOPPED'
+          ? { ...prev, startTime: formattedValue }
+          : {
+              ...prev,
+              startTime: formattedValue,
+              secondsAtStart: seconds,
+              secondsRemaining: seconds,
+            }
+      );
     } catch (e: unknown) {
-      setTimer({
-        ...timer,
+      setTimer((prev) => ({
+        ...prev,
         startTime: value,
-      });
+      }));
     }
   };
 
@@ -124,12 +120,12 @@ export default function TimerApp() {
     try {
       const sec = toSeconds(timer.startTime);
 
-      setTimer({
-        ...timer,
+      setTimer((prev) => ({
+        ...prev,
         state: 'STARTED',
         secondsAtStart: sec,
         secondsRemaining: sec,
-      });
+      }));
     } catch (e: unknown) {
       if (e instanceof Error) {
         console.error('Failed to parse time: ', e.message);
@@ -138,29 +134,29 @@ export default function TimerApp() {
   };
 
   const handlePause = () => {
-    setTimer({
-      ...timer,
+    setTimer((prev) => ({
+      ...prev,
       state: 'PAUSED',
-    });
+    }));
   };
 
   const handleResume = () => {
-    setTimer({
-      ...timer,
+    setTimer((prev) => ({
+      ...prev,
       state: 'STARTED',
-    });
+    }));
   };
 
   const handleReset = () => {
     try {
       const sec = toSeconds(timer.startTime);
 
-      setTimer({
-        ...timer,
+      setTimer((prev) => ({
+        ...prev,
         state: 'STOPPED',
         secondsAtStart: sec,
         secondsRemaining: sec,
-      });
+      }));
     } catch (e: unknown) {
       if (e instanceof Error) {
         console.error('Failed to parse time: ', e.message);

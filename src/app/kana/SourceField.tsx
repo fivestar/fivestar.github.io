@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
@@ -30,7 +30,7 @@ export function SourceField({ text, placeholder, setText }: SourceFieldProps) {
           disabled={!text}
           aria-label="Clear text"
         >
-          <FontAwesomeIcon icon={faXmark} size="1x" />
+          <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>
     </div>

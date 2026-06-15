@@ -1,6 +1,13 @@
 'use client';
 
-import React, { ChangeEvent, FocusEvent, KeyboardEvent, useState, useEffect, useRef } from 'react';
+import {
+  type ChangeEvent,
+  type FocusEvent,
+  type KeyboardEvent,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import { isValidTimeString } from './utils';

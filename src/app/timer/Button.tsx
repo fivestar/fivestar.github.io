@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   IconDefinition,
@@ -34,7 +34,7 @@ function ControlButton({
     >
       {icon && (
         <>
-          <FontAwesomeIcon icon={icon} size="1x" />
+          <FontAwesomeIcon icon={icon} />
           <span className="visually-hidden">{text}</span>
         </>
       )}
