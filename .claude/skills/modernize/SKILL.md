@@ -45,9 +45,10 @@ them fresh each run from the tools and the official docs rather than from memory
    anything, so later failures are attributable to your work.
 
 2. **Survey.** Inventory dependencies and security posture (`npm outdated`,
-   `npm audit`), and scan the code for patterns that diverge from today's
-   official framework/library guidance. Flag major version jumps and any coupled
-   changes.
+   `npm audit`), and scan the code for patterns that diverge from current best
+   practices — framework/library APIs, language idioms, and CSS — within the
+   browser-support range the project targets. Flag major version jumps and any
+   coupled changes.
 
 3. **Plan with the user.** Present an organized assessment grouped by the stages
    below, with risk and major jumps called out. Recommend a low-risk-first order
