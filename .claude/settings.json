@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm audit *)",
+      "Bash(npm ls *)",
+      "Bash(npm outdated *)",
+      "Bash(npx prettier *)"
+    ]
+  }
+}
