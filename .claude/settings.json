@@ -4,6 +4,7 @@
       "Bash(npm --version)",
       "Bash(npm audit *)",
       "Bash(npm ls *)",
+      "Bash(npx browserslist *)",
       "Bash(npm outdated *)",
       "Bash(npx prettier *)"
     ]
